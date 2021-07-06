@@ -1,83 +1,94 @@
 package info.esoft.pizza.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.aspectj.weaver.ast.And;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static com.codeborne.selenide.Selenide.$x;
+
 public class BasketPage {
 
-    public static WebDriver driver;
+    // TODO Требуется рефакторинг
+    private static SelenideElement buttonRemovePizza = $x("(//android.view.View[@content-desc=\"#\"])[1]/android.view.View/android.view.View");
+    private static SelenideElement buttonRemovePepsi = $x("(//android.view.View[@content-desc=\"#\"])[1]/android.view.View/android.view.View");
 
-    private static By buttonRemovePizza = By.xpath("");
-    private static By buttonRemovePepsi = By.xpath("");
+    private static SelenideElement textPriceOrder = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.ListView/android.view.View/android.view.View/android.widget.TextView[1]");
+    private static SelenideElement buttonBuyOrder = $x("//android.view.View[@content-desc=\"ОФОРМИТЬ ЗАКАЗ\"]");
+    private static SelenideElement agreeRemovePizza = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View[2]");
+    // 'Пустая корзина'
+    private static SelenideElement descriptionAfterRemovePizza = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]");
 
-    private static By textPriceOrder = By.xpath("");
-    private static By buttonBuyOrder = By.xpath("");
-    private static By agreeRemovePizza = By.xpath("");
-    private static By descriptionAfterRemovePizza = By.xpath("");
+    private static SelenideElement inputPromocode = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[3]/android.view.View[3]/android.view.View[1]/android.widget.ListView[1]/android.view.View/android.view.View/android.widget.EditText");
+    private static SelenideElement buttonAgreePromocode = $x("//android.view.View[@content-desc=\"ПРИМЕНИТЬ\"]");
+    // TODO Если не вводить промокод, то появится пустое окно
+    private static SelenideElement descriptionAfterAgreePromocode = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[1]/android.view.View[2]");
+    private static SelenideElement closeWindowAfterAgreePromocode = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View");
 
-    private static By inputPromocode = By.xpath("");
-    private static By buttonAgreePromocode = By.xpath("");
-    private static By descriptionAfterAgreePromocode = By.xpath("");
+    private static SelenideElement inputName = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.widget.ListView[2]/android.view.View[1]/android.view.View/android.view.View[1]/android.widget.EditText");
+    private static SelenideElement selectListAddress = $x("//android.view.View[@content-desc='! Район Выберите район']");
+    private static SelenideElement selectAddress = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ListView/android.view.View[3]/android.view.View/android.view.View[1]/android.view.View");
+    private static SelenideElement inputStreet = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View[8]/android.view.View[1]/android.widget.EditText");
+    private static SelenideElement inputAppartment = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View[3]/android.view.View[1]/android.widget.EditText");
 
-    private static By inputName = By.xpath("");
-    private static By selectListAddress = By.xpath("");
-    private static By selectAddress = By.xpath("");
-    private static By inputStreet = By.xpath("");
-    private static By inputAppartment = By.xpath("");
-
-    private static By buttonCancelAccess = By.xpath("");
+    private static SelenideElement buttonCancelAccess = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View[2]");
 
     public static void removePizza(){
-        driver.findElement(buttonRemovePizza).click();
+        buttonRemovePizza.click();
     }
 
     public static void removePepsi(){
-        driver.findElement(buttonRemovePepsi).click();
+        buttonRemovePepsi.click();
     }
 
     public static void sendName(String name){
-        driver.findElement(inputName).sendKeys(name);
+        inputName.sendKeys(name);
     }
 
     public static void sendAddress(){
-        driver.findElement(selectListAddress).click();
-        driver.findElement(selectAddress).click();
+        selectListAddress.click();
+        selectAddress.click();
     }
 
     public static void sendStreet(String street){
-        driver.findElement(inputStreet).sendKeys(street);
+        inputStreet.sendKeys(street);
     }
 
     public static void sendAppartment(String street){
-        driver.findElement(inputAppartment).sendKeys(street);
+        inputAppartment.sendKeys(street);
     }
 
     public static void sendPromocode(String promocode){
-        driver.findElement(inputPromocode).sendKeys(promocode);
+        inputPromocode.sendKeys(promocode);
     }
 
     public static void agreePromocode(){
-        driver.findElement(buttonAgreePromocode).click();
+        buttonAgreePromocode.click();
+    }
+
+    public static void closeWindowAfterAgreePromocode(){
+        closeWindowAfterAgreePromocode.click();
     }
 
     public static String getDescriptionAfterRemovePizza(){
-        return driver.findElement(descriptionAfterRemovePizza).getText();
+        return descriptionAfterRemovePizza.getText();
     }
 
-    // TODO Реализовать проверку на активную кнопку
-    public static Boolean buttonBuyOrderIsActiv(){
-        driver.findElement(buttonBuyOrder);
-        return true;
+    public static Boolean buttonBuyOrderIsActive(){
+        return Boolean.getBoolean(buttonBuyOrder.getAttribute("clickable"));
     }
 
     public static String getPriceOrder(){
-        return driver.findElement(textPriceOrder).getText();
+        return textPriceOrder.getText();
     }
 
     public static void cancelAccess(){
-        driver.findElement(buttonCancelAccess).click();
+        buttonCancelAccess.click();
+    }
+
+    public static Boolean basketIsEmpty(){
+        return descriptionAfterRemovePizza.text().contains("Пустая корзина");
     }
 
 }

@@ -1,55 +1,55 @@
 package info.esoft.pizza.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static com.codeborne.selenide.Selenide.$x;
+
 public class MenuPage {
 
-    public static WebDriver driver;
-
-    private static By imageLogo = By.xpath("");
+    private static SelenideElement imageLogo = $x("");
 
     // Элементы меню
-    private static By elementEnterAccount = By.xpath("");
-    private static By elementMenu = By.xpath("");
-    private static By elementPromo = By.xpath("");
-    private static By elementBonusProgram = By.xpath("");
-    private static By elementConditionDelivery = By.xpath("");
-    private static By elementContact = By.xpath("");
-    private static By elementBasket = By.xpath("");
+    private static SelenideElement elementEnterAccount = $x("//android.view.View[@content-desc='Войти']");
+    private static SelenideElement elementMenu = $x("//android.view.View[@content-desc='Меню']");
+    private static SelenideElement elementPromo = $x("//android.view.View[@content-desc='Акции']");
+    private static SelenideElement elementBonusProgram = $x("//android.view.View[@content-desc='Бонусная программа']");
+    private static SelenideElement elementConditionDelivery = $x("//android.view.View[@content-desc='Условия доставки']");
+    private static SelenideElement elementContact = $x("//android.view.View[@content-desc='Контакты']");
+    private static SelenideElement elementBasket = $x("//android.view.View[@content-desc='Корзина']");
 
-    public void enterAccount(WebDriver driver){
-        driver.findElement(elementEnterAccount).click();
+    public static void enterAccount(){
+        elementEnterAccount.click();
     }
 
-    // TODO IsDisplayed покажет ошибку?
-    public boolean enterAccountIsHave(){
-        return driver.findElement(elementEnterAccount).isDisplayed();
+    public static boolean enterAccountIsHave(){
+        return elementEnterAccount.isDisplayed();
     }
 
-    public boolean menuIsHave(){
-        return driver.findElement(elementMenu).isDisplayed();
+    public static boolean menuIsHave(){
+        return elementMenu.isDisplayed();
     }
 
-    public boolean promoIsHave(){
-        return driver.findElement(elementPromo).isDisplayed();
+    public static boolean promoIsHave(){
+        return elementPromo.isDisplayed();
     }
 
     public boolean bonusProgramIsHave(){
-        return driver.findElement(elementBonusProgram).isDisplayed();
+        return elementBonusProgram.isDisplayed();
     }
 
-    public boolean conditionDeliveryIsHave(){
-        return driver.findElement(elementConditionDelivery).isDisplayed();
+    public static boolean conditionDeliveryIsHave(){
+        return elementConditionDelivery.isDisplayed();
     }
 
-    public boolean contactIsHave(){
-        return driver.findElement(elementContact).isDisplayed();
+    public static boolean contactIsHave(){
+        return elementContact.isDisplayed();
     }
 
-    public boolean basketIsHave(){
-        return driver.findElement(elementBasket).isDisplayed();
+    public static boolean basketIsHave(){
+        return elementBasket.isDisplayed();
     }
 
 }

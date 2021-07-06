@@ -1,70 +1,71 @@
 package info.esoft.pizza.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static com.codeborne.selenide.Selenide.$x;
+
 public class FiftyOnFiftyPage {
 
-    public static WebDriver driver;
+    private static SelenideElement buttonPageOnSelectPizza = $x("//android.view.View[@content-desc=\"Пиццы\"]");
+    private static SelenideElement buttonLastPage = $x("//android.view.View[@content-desc=\"Завершить\"]");
+    private static SelenideElement buttonBuy = $x("//android.view.View[@content-desc=\"КУПИТЬ\"]");
+    private static SelenideElement buttonOkInstruction = $x("//android.view.View[@content-desc=\"ВСЕ ПОНЯТНО!\"]");
+    private static SelenideElement buttonBack = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[1]");
 
-    private static By buttonPageOnSelectPizza = By.xpath("");
-    private static By buttonLastPageInUpMenu = By.xpath("");
-    private static By buttonBuy = By.xpath("");
-    private static By buttonOkInstruction = By.xpath("");
-    private static By buttonBack = By.xpath("");
+    // TODO Требуется рефакторинг
+    private static SelenideElement titleSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[4]");
+    private static SelenideElement subtitleSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[3]");
+    private static SelenideElement priceSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[5]");
 
-    private static By titleSetFiftyOnFifty = By.xpath("");
-    private static By subtitleSetFiftyOnFifty = By.xpath("");
-    private static By priceSetFiftyOnFifty = By.xpath("");
-
-    private static By buttonAddSet = By.xpath("");
+    private static SelenideElement buttonAddSet = $x("//android.view.View[@content-desc=\"ДОБАВИТЬ\"]");
     // Пицца с названием "Гавайка"
-    private static By buttonAddPizzaOne = By.xpath("");
+    private static SelenideElement buttonAddPizzaOne = $x("(//android.view.View[@content-desc=\"ДОБАВИТЬ\"])[1]");
     // Пицца с названием "Четыре сыра"
-    private static By buttonAddPizzaTwo = By.xpath("");
+    private static SelenideElement buttonAddPizzaTwo = $x("(//android.view.View[@content-desc=\"ДОБАВИТЬ\"])[2]");
 
     public static void addSet(){
-        driver.findElement(buttonAddSet).click();
+        buttonAddSet.click();
     }
 
     public static void addPizzaOne(){
-        driver.findElement(buttonAddPizzaOne).click();
+        buttonAddPizzaOne.click();
     }
 
     public static void addPizzaTwo(){
-        driver.findElement(buttonAddPizzaTwo).click();
+        buttonAddPizzaTwo.click();
     }
 
     public static void changeOnLastPage(){
-        driver.findElement(buttonLastPageInUpMenu).click();
+        buttonLastPage.click();
     }
 
     public static void nextPageOnSelectPizza(){
-        driver.findElement(buttonPageOnSelectPizza).click();
+        buttonPageOnSelectPizza.click();
     }
 
     public static String getTitleSetFiftyOnFifty(){
-        return driver.findElement(titleSetFiftyOnFifty).getText();
+        return titleSetFiftyOnFifty.getText();
     }
 
     public static String getSubtitleSetFiftyOnFifty(){
-        return driver.findElement(subtitleSetFiftyOnFifty).getText();
+        return subtitleSetFiftyOnFifty.getText();
     }
 
     public static String getPriceSetFiftyOnFifty(){
-        return driver.findElement(priceSetFiftyOnFifty).getText();
+        return priceSetFiftyOnFifty.getText();
     }
 
     // TODO Реализовать проверку на активную/не активную кнопку
     public static Boolean buyButtonIsActive(){
-        driver.findElement(buttonBuy);
-        return true;
+        return Boolean.getBoolean(buttonBuy.getAttribute("clickable"));
     }
 
     // Открывает страницу SetsPage
     public static void closePageAfterBuy(){
-        driver.findElement(buttonOkInstruction).click();
-        driver.findElement(buttonBack).click();
+        buttonOkInstruction.click();
+        buttonBack.click();
     }
 }
