@@ -22,6 +22,14 @@ public class BaseTest extends Settings {
     public void Up() throws MalformedURLException {
         System.out.println("Driver start");
         driver = createAndroidDriver();
+
+        MainPage.driver = driver;
+        MenuPage.driver = driver;
+        SetsPage.driver = driver;
+        FiftyOnFiftyPage.driver = driver;
+        FilterSetsPage.driver = driver;
+        AuthorizationPage.driver = driver;
+        BasketPage.driver = driver;
     }
 
     @AfterEach

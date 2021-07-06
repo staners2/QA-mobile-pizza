@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class Settings {
-    protected static AndroidDriver driver;
+    protected static WebDriver driver;
     protected static String pathFilePizzaApk = "/Users/user/Downloads/pizza.apk";
     protected static String nameDevice = "MyPhone";
     protected static String connectAppiumString = "http://127.0.0.1:4723/wd/hub";
@@ -23,11 +23,9 @@ public class Settings {
         return capabilities;
     }
 
-    protected static AndroidDriver createAndroidDriver() throws MalformedURLException {
+    protected static WebDriver createAndroidDriver() throws MalformedURLException {
         AndroidDriver<AndroidElement> driver = new AndroidDriver<>(new URL(connectAppiumString), setSettingCapabilities());
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         return driver;
     }
-
-
 }

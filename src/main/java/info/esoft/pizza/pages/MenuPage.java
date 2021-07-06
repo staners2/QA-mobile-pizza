@@ -2,8 +2,12 @@ package info.esoft.pizza.pages;
 
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 public class MenuPage {
+
+    public static WebDriver driver;
+
     private static By imageLogo = By.xpath("");
 
     // Элементы меню
@@ -15,36 +19,36 @@ public class MenuPage {
     private static By elementContact = By.xpath("");
     private static By elementBasket = By.xpath("");
 
-    public void enterAccount(AndroidDriver driver){
+    public void enterAccount(WebDriver driver){
         driver.findElement(elementEnterAccount).click();
     }
 
     // TODO IsDisplayed покажет ошибку?
-    public boolean enterAccountIsHave(AndroidDriver driver){
+    public boolean enterAccountIsHave(){
         return driver.findElement(elementEnterAccount).isDisplayed();
     }
 
-    public boolean menuIsHave(AndroidDriver driver){
+    public boolean menuIsHave(){
         return driver.findElement(elementMenu).isDisplayed();
     }
 
-    public boolean promoIsHave(AndroidDriver driver){
+    public boolean promoIsHave(){
         return driver.findElement(elementPromo).isDisplayed();
     }
 
-    public boolean bonusProgramIsHave(AndroidDriver driver){
+    public boolean bonusProgramIsHave(){
         return driver.findElement(elementBonusProgram).isDisplayed();
     }
 
-    public boolean conditionDeliveryIsHave(AndroidDriver driver){
+    public boolean conditionDeliveryIsHave(){
         return driver.findElement(elementConditionDelivery).isDisplayed();
     }
 
-    public boolean contactIsHave(AndroidDriver driver){
+    public boolean contactIsHave(){
         return driver.findElement(elementContact).isDisplayed();
     }
 
-    public boolean basketIsHave(AndroidDriver driver){
+    public boolean basketIsHave(){
         return driver.findElement(elementBasket).isDisplayed();
     }
 
