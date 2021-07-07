@@ -9,12 +9,12 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class AuthorizationPage {
 
-    private static SelenideElement inputNumber = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]//android.widget.EditText");
-    private static SelenideElement conditionOne = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View[3]//android.widget.ListView/android.view.View[2]/android.view.View[1]");
-    private static SelenideElement conditionTwo = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View[3]//android.widget.ListView/android.view.View[3]/android.view.View[1]");
-    private static SelenideElement buttonNext = $x("//android.view.View[@content-desc='ПРОДОЛЖИТЬ →']");
-
-    private static SelenideElement titlePage = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[2]");
+    private static SelenideElement inputNumber = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]//android.widget.EditText"),
+            conditionOne = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View[3]//android.widget.ListView/android.view.View[2]/android.view.View[1]"),
+            conditionTwo = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View[3]//android.widget.ListView/android.view.View[3]/android.view.View[1]"),
+            buttonNext = $x("//android.view.View[@content-desc='ПРОДОЛЖИТЬ →']"),
+    // Личный кабинет
+            titlePage = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[2]");
 
     public static void sendNumber(String number){
         inputNumber.sendKeys(number);
@@ -33,7 +33,7 @@ public class AuthorizationPage {
         buttonNext.click();
     }
 
-    public static boolean inputValidData(){
+    public static boolean isInputValidData(){
         return titlePage.isDisplayed();
     }
 }

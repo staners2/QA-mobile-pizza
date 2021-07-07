@@ -6,36 +6,42 @@ import org.aspectj.weaver.ast.And;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class BasketPage {
 
     // TODO Требуется рефакторинг
-    private static SelenideElement buttonRemovePizza = $x("(//android.view.View[@content-desc=\"#\"])[1]/android.view.View/android.view.View");
-    private static SelenideElement buttonRemovePepsi = $x("(//android.view.View[@content-desc=\"#\"])[1]/android.view.View/android.view.View");
+    private static SelenideElement buttonRemoveSet = $x("(//android.view.View[@content-desc=\"#\"])[1]/android.view.View/android.view.View"),
+            buttonRemovePepsi = $x("(//android.view.View[@content-desc=\"#\"])[1]/android.view.View/android.view.View"),
 
-    private static SelenideElement textPriceOrder = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.ListView/android.view.View/android.view.View/android.widget.TextView[1]");
-    private static SelenideElement buttonBuyOrder = $x("//android.view.View[@content-desc=\"ОФОРМИТЬ ЗАКАЗ\"]");
-    private static SelenideElement agreeRemovePizza = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View[2]");
-    // 'Пустая корзина'
-    private static SelenideElement descriptionAfterRemovePizza = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]");
+            textPriceOrder = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.ListView/android.view.View/android.view.View/android.widget.TextView[1]"),
+            buttonBuyOrder = $x("//android.view.View[@content-desc=\"ОФОРМИТЬ ЗАКАЗ\"]"),
+            buttonAgreeRemoveSet = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View[2]"),
+            // 'Пустая корзина'
+            descriptionAfterRemovePizza = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]"),
 
-    private static SelenideElement inputPromocode = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[3]/android.view.View[3]/android.view.View[1]/android.widget.ListView[1]/android.view.View/android.view.View/android.widget.EditText");
-    private static SelenideElement buttonAgreePromocode = $x("//android.view.View[@content-desc=\"ПРИМЕНИТЬ\"]");
-    // TODO Если не вводить промокод, то появится пустое окно
-    private static SelenideElement descriptionAfterAgreePromocode = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[1]/android.view.View[2]");
-    private static SelenideElement closeWindowAfterAgreePromocode = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View");
+            inputPromocode = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[3]/android.view.View[3]/android.view.View[1]/android.widget.ListView[1]/android.view.View/android.view.View/android.widget.EditText"),
+            buttonAgreePromocode = $x("//android.view.View[@content-desc=\"ПРИМЕНИТЬ\"]"),
+            // TODO Если не вводить промокод, то появится пустое окно
+            descriptionAfterAgreePromocode = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[1]/android.view.View[2]"),
+            closeWindowAfterAgreePromocode = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View"),
 
-    private static SelenideElement inputName = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.widget.ListView[2]/android.view.View[1]/android.view.View/android.view.View[1]/android.widget.EditText");
-    private static SelenideElement selectListAddress = $x("//android.view.View[@content-desc='! Район Выберите район']");
-    private static SelenideElement selectAddress = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ListView/android.view.View[3]/android.view.View/android.view.View[1]/android.view.View");
-    private static SelenideElement inputStreet = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View[8]/android.view.View[1]/android.widget.EditText");
-    private static SelenideElement inputAppartment = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View[3]/android.view.View[1]/android.widget.EditText");
+            inputName = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.widget.ListView[2]/android.view.View[1]/android.view.View/android.view.View[1]/android.widget.EditText"),
+            selectListAddress = $x("//android.view.View[@content-desc='! Район Выберите район']"),
+            selectAddress = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ListView/android.view.View[3]/android.view.View/android.view.View[1]/android.view.View"),
+            inputStreet = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View[8]/android.view.View[1]/android.widget.EditText"),
+            inputAppartment = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View[3]/android.view.View[1]/android.widget.EditText"),
 
-    private static SelenideElement buttonCancelAccess = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View[2]");
+            buttonCancelAccess = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View[2]"),
+            buttonDeny = $(By.id("com.android.permissioncontroller:id/permission_deny_button"));
 
-    public static void removePizza(){
-        buttonRemovePizza.click();
+    public static void removeSet(){
+        buttonRemoveSet.click();
+    }
+
+    public static void agreeRemoveSet(){
+        buttonAgreeRemoveSet.click();
     }
 
     public static void removePepsi(){
@@ -43,27 +49,33 @@ public class BasketPage {
     }
 
     public static void sendName(String name){
+        inputName.scrollTo();
         inputName.sendKeys(name);
     }
 
     public static void sendAddress(){
+        selectListAddress.scrollTo();
         selectListAddress.click();
         selectAddress.click();
     }
 
     public static void sendStreet(String street){
+        inputStreet.scrollTo();
         inputStreet.sendKeys(street);
     }
 
     public static void sendAppartment(String street){
+        inputAppartment.scrollTo();
         inputAppartment.sendKeys(street);
     }
 
     public static void sendPromocode(String promocode){
+        inputPromocode.scrollTo();
         inputPromocode.sendKeys(promocode);
     }
 
     public static void agreePromocode(){
+        buttonAgreePromocode.scrollTo();
         buttonAgreePromocode.click();
     }
 
@@ -71,7 +83,11 @@ public class BasketPage {
         closeWindowAfterAgreePromocode.click();
     }
 
-    public static String getDescriptionAfterRemovePizza(){
+    public static void cancelConditionAccessNumber(){
+        buttonDeny.click();
+    }
+
+    public static String getDescriptionAfterRemoveSet(){
         return descriptionAfterRemovePizza.getText();
     }
 
@@ -91,4 +107,7 @@ public class BasketPage {
         return descriptionAfterRemovePizza.text().contains("Пустая корзина");
     }
 
+    public static String getDescriptionAfterAgreePromocode(){
+        return descriptionAfterAgreePromocode.text();
+    }
 }

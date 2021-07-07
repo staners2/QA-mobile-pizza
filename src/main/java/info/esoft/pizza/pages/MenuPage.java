@@ -9,16 +9,16 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class MenuPage {
 
-    private static SelenideElement imageLogo = $x("");
+    private static SelenideElement imageLogo = $x(""),
 
-    // Элементы меню
-    private static SelenideElement elementEnterAccount = $x("//android.view.View[@content-desc='Войти']");
-    private static SelenideElement elementMenu = $x("//android.view.View[@content-desc='Меню']");
-    private static SelenideElement elementPromo = $x("//android.view.View[@content-desc='Акции']");
-    private static SelenideElement elementBonusProgram = $x("//android.view.View[@content-desc='Бонусная программа']");
-    private static SelenideElement elementConditionDelivery = $x("//android.view.View[@content-desc='Условия доставки']");
-    private static SelenideElement elementContact = $x("//android.view.View[@content-desc='Контакты']");
-    private static SelenideElement elementBasket = $x("//android.view.View[@content-desc='Корзина']");
+            // Элементы меню
+            elementEnterAccount = $x("//android.view.View[@content-desc='Войти']"),
+            elementMenu = $x("//android.view.View[@content-desc='Меню']"),
+            elementPromo = $x("//android.view.View[@content-desc='Акции']"),
+            elementBonusProgram = $x("//android.view.View[@content-desc='Бонусная программа']"),
+            elementConditionDelivery = $x("//android.view.View[@content-desc='Условия доставки']"),
+            elementContact = $x("//android.view.View[@content-desc='Контакты']"),
+            elementBasket = $x("//android.view.View[@content-desc='Корзина']");
 
     public static void enterAccount(){
         elementEnterAccount.click();
@@ -36,7 +36,7 @@ public class MenuPage {
         return elementPromo.isDisplayed();
     }
 
-    public boolean bonusProgramIsHave(){
+    public static boolean bonusProgramIsHave(){
         return elementBonusProgram.isDisplayed();
     }
 

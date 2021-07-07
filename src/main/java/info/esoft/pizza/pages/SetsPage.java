@@ -10,12 +10,12 @@ import static com.codeborne.selenide.Selenide.$x;
 public class SetsPage {
 
     // TODO Дописать пути
-    private static SelenideElement buttonFilter = $x("//android.view.View[@content-desc='ФИЛЬТР ТОВАРОВ']");
-    private static SelenideElement textCountOffer = $x("//android.view.View[contains(@text, 'предложения')]");
-    private static SelenideElement buttonCollectSetFiftyOnFifty = $x("(//android.view.View[@content-desc=\"СОБРАТЬ\"])[1]");
-    private static SelenideElement titleSetFiftyOnFifty = $x("//android.view.View[@content-desc=\"50/50 Не можете решить, какую пиццу выбрать?Выбирать больше не нужно: закажите 2 любимые пиццы в одной!Внимание: Акция действует только на ассортимент пицц 36см.   от 700 р.\"]/android.view.View[2]");
-    private static SelenideElement subtitleSetFiftyOnFifty = $x("//android.view.View[@content-desc=\"50/50 Не можете решить, какую пиццу выбрать?Выбирать больше не нужно: закажите 2 любимые пиццы в одной!Внимание: Акция действует только на ассортимент пицц 36см.   от 700 р.\"]/android.view.View[3]");
-    private static SelenideElement priceSetFiftyOnFifty = $x("//android.view.View[@content-desc=\"50/50 Не можете решить, какую пиццу выбрать?Выбирать больше не нужно: закажите 2 любимые пиццы в одной!Внимание: Акция действует только на ассортимент пицц 36см.   от 700 р.\"]/android.view.View[4]/android.view.View");
+    private static SelenideElement buttonFilter = $x("//android.view.View[@content-desc='ФИЛЬТР ТОВАРОВ']"),
+            textCountOffer = $x("//android.view.View[contains(@text, 'предложения')]"),
+            buttonCollectSetFiftyOnFifty = $x("(//android.view.View[@content-desc=\"СОБРАТЬ\"])[1]"),
+            titleSetFiftyOnFifty = $x("//android.view.View[@content-desc=\"50/50 Не можете решить, какую пиццу выбрать?Выбирать больше не нужно: закажите 2 любимые пиццы в одной!Внимание: Акция действует только на ассортимент пицц 36см.   от 700 р.\"]/android.view.View[2]"),
+            subtitleSetFiftyOnFifty = $x("//android.view.View[@content-desc=\"50/50 Не можете решить, какую пиццу выбрать?Выбирать больше не нужно: закажите 2 любимые пиццы в одной!Внимание: Акция действует только на ассортимент пицц 36см.   от 700 р.\"]/android.view.View[3]"),
+            priceSetFiftyOnFifty = $x("//android.view.View[@content-desc=\"50/50 Не можете решить, какую пиццу выбрать?Выбирать больше не нужно: закажите 2 любимые пиццы в одной!Внимание: Акция действует только на ассортимент пицц 36см.   от 700 р.\"]/android.view.View[4]/android.view.View");
 
     public static void openFilter(){
         buttonFilter.click();
@@ -47,13 +47,4 @@ public class SetsPage {
         price = price.substring(price.length() - (price.length()-3));
         return Integer.getInteger(price);
     }
-
-    public static String getTitleSet(){
-        return titleSetFiftyOnFifty.text();
-    }
-
-    public static String getSubtitleSet(){
-        return subtitleSetFiftyOnFifty.text();
-    }
-
 }

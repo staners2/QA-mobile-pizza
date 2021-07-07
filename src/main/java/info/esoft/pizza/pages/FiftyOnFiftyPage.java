@@ -9,22 +9,22 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class FiftyOnFiftyPage {
 
-    private static SelenideElement buttonPageOnSelectPizza = $x("//android.view.View[@content-desc=\"Пиццы\"]");
-    private static SelenideElement buttonLastPage = $x("//android.view.View[@content-desc=\"Завершить\"]");
-    private static SelenideElement buttonBuy = $x("//android.view.View[@content-desc=\"КУПИТЬ\"]");
-    private static SelenideElement buttonOkInstruction = $x("//android.view.View[@content-desc=\"ВСЕ ПОНЯТНО!\"]");
-    private static SelenideElement buttonBack = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[1]");
+    private static SelenideElement buttonPageOnSelectPizza = $x("//android.view.View[@content-desc=\"Пиццы\"]"),
+            buttonLastPage = $x("//android.view.View[@content-desc=\"Завершить\"]"),
+            buttonBuy = $x("//android.view.View[@content-desc=\"КУПИТЬ\"]"),
+            buttonOkInstruction = $x("//android.view.View[@content-desc=\"ВСЕ ПОНЯТНО!\"]"),
+            buttonBack = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[1]"),
 
-    // TODO Требуется рефакторинг
-    private static SelenideElement titleSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[4]");
-    private static SelenideElement subtitleSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[3]");
-    private static SelenideElement priceSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[5]");
+            // TODO Требуется рефакторинг
+            titleSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[4]"),
+            subtitleSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[3]"),
+            priceSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[5]"),
 
-    private static SelenideElement buttonAddSet = $x("//android.view.View[@content-desc=\"ДОБАВИТЬ\"]");
-    // Пицца с названием "Гавайка"
-    private static SelenideElement buttonAddPizzaOne = $x("(//android.view.View[@content-desc=\"ДОБАВИТЬ\"])[1]");
-    // Пицца с названием "Четыре сыра"
-    private static SelenideElement buttonAddPizzaTwo = $x("(//android.view.View[@content-desc=\"ДОБАВИТЬ\"])[2]");
+            buttonAddSet = $x("//android.view.View[@content-desc=\"ДОБАВИТЬ\"]"),
+            // Пицца с названием "Гавайка"
+            buttonAddPizzaOne = $x("(//android.view.View[@content-desc=\"ДОБАВИТЬ\"])[1]"),
+            // Пицца с названием "Четыре сыра"
+            buttonAddPizzaTwo = $x("(//android.view.View[@content-desc=\"ДОБАВИТЬ\"])[2]");
 
     public static void addSet(){
         buttonAddSet.click();
@@ -44,6 +44,10 @@ public class FiftyOnFiftyPage {
 
     public static void nextPageOnSelectPizza(){
         buttonPageOnSelectPizza.click();
+    }
+
+    public static void buySet(){
+        buttonBuy.click();
     }
 
     public static String getTitleSetFiftyOnFifty(){

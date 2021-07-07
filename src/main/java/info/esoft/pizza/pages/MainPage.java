@@ -10,13 +10,13 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class MainPage{
 
-    private static SelenideElement buttonDeny = $(By.id("com.android.permissioncontroller:id/permission_deny_button"));
-    private static SelenideElement buttonAgreePromo = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View");
-    private static SelenideElement buttonOpenMenu = $x("//android.view.View[@content-desc='#']");
-    private static SelenideElement buttonSet = $x("//android.view.View[@content-desc='Пицца']");
-    private static SelenideElement buttonBasket = $x("//android.view.View[@content-desc='КОРЗИНА']");
+    private static SelenideElement buttonDeny = $(By.id("com.android.permissioncontroller:id/permission_deny_button")),
+            buttonAgreePromo = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View"),
+            buttonOpenMenu = $x("//android.view.View[@content-desc='#']"),
+            buttonSet = $x("//android.view.View[@content-desc='Наборы']"),
+            buttonBasket = $x("//android.view.View[@content-desc='КОРЗИНА']"),
 
-    private static SelenideElement buttonMenuInNav = $x("//android.view.View[@content-desc='МЕНЮ']");
+            buttonMenuInNav = $x("//android.view.View[@content-desc='МЕНЮ']");
 
     public static void cancelConditionAccessNumber(){
         buttonDeny.click();
@@ -31,14 +31,21 @@ public class MainPage{
     }
 
     public static void openSetsPage(){
+        buttonSet.scrollTo();
         buttonSet.click();
     }
 
     public static void openBasket(){
+        buttonBasket.scrollTo();
         buttonBasket.click();
     }
 
     public static void clickMenuInNavigatePanel(){
         buttonMenuInNav.click();
+    }
+
+    public static boolean setIsHaveInMenu(){
+        buttonSet.scrollTo();
+        return buttonSet.isDisplayed();
     }
 }
