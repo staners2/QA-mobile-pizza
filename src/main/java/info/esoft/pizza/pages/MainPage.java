@@ -18,6 +18,8 @@ public class MainPage{
 
             buttonMenuInNav = $x("//android.view.View[@content-desc='МЕНЮ']");
 
+    public static SelenideElement buttonSetFFF = $x("//android.view.View[@content-desc='Наборы']");
+
     public static void cancelConditionAccessNumber(){
         buttonDeny.click();
     }

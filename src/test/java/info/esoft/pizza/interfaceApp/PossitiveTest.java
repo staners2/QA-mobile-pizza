@@ -12,7 +12,9 @@ public class PossitiveTest extends BaseTest {
 
     @Test
     @DisplayName("Пункт 'Наборы' присутствует на главном меню")
-    public void setIsHaveInMenu(){
+    public void setIsHaveInMenu() throws InterruptedException {
+        Helpers.scrollToElement(MainPage.buttonSetFFF);
+        Thread.sleep(2000);
         Assert.assertTrue(MainPage.setIsHaveInMenu());
     }
 
