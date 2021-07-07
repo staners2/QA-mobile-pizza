@@ -13,24 +13,24 @@ import java.sql.Driver;
 
 public class BaseTest extends Settings {
 
-    protected static MainPage mainPage;
+/*    protected static MainPage mainPage;
     protected static MenuPage menuPage;
     protected static SetsPage setsPage;
     protected static FiftyOnFiftyPage fiftyOnFiftyPage;
     protected static FilterSetsPage filterSetsPage;
-    protected static AuthorizationPage authPage;
+    protected static AuthorizationPage authPage;*/
 
     @BeforeEach
     public void Up() throws MalformedURLException {
         setSettingsForDriver();
+        System.out.println("Driver start");
         MainPage.cancelConditionAccessNumber();
         MainPage.closePromo();
     }
 
     @AfterEach
     public void Down(){
-        Selenide.clearBrowserCookies();
-        Selenide.clearBrowserLocalStorage();
+        Selenide.closeWebDriver();
         System.out.println("Driver quit");
     }
 }
