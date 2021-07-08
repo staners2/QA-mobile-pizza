@@ -18,7 +18,6 @@ public class AuthorizationPage {
 
     public static void sendNumber(String number){
         inputNumber.sendKeys(number);
-        System.out.println("Hi there");
     }
 
     public static void agreeConditionOne(){
