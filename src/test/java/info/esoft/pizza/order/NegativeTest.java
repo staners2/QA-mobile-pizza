@@ -18,7 +18,7 @@ public class NegativeTest {
         MainPage.openBasket();
         BasketPage.cancelConditionAccessNumber();
 
-        Assert.assertTrue(!BasketPage.buttonBuyOrderIsActive());
+        Assert.assertFalse(!BasketPage.buttonBuyOrderIsActive());
     }
 
     @Test
@@ -32,6 +32,6 @@ public class NegativeTest {
         BasketPage.sendPromocode(Const.Account.PROMOCODE_ERROR);
         BasketPage.agreePromocode();
 
-        Assert.assertTrue(BasketPage.getDescriptionAfterAgreePromocode().equals(Const.Message.DESCRIPTION_ERROR_PROMOCODE));
+        Assert.assertFalse(BasketPage.getDescriptionAfterAgreePromocode().equals(Const.Message.DESCRIPTION_ERROR_PROMOCODE));
     }
 }

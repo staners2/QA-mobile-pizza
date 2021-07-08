@@ -20,7 +20,7 @@ public class NegativeTest extends BaseTest {
         FiftyOnFiftyPage.addPizzaOne();
         FiftyOnFiftyPage.changeOnLastPage();
 
-        Assert.assertTrue(!FiftyOnFiftyPage.buyButtonIsActive());
+        Assert.assertFalse(!FiftyOnFiftyPage.buyButtonIsActive());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class NegativeTest extends BaseTest {
         FiftyOnFiftyPage.addPizzaTwo();
         FiftyOnFiftyPage.changeOnLastPage();
 
-        Assert.assertTrue(!FiftyOnFiftyPage.buyButtonIsActive());
+        Assert.assertFalse(!FiftyOnFiftyPage.buyButtonIsActive());
     }
 
     @Test
@@ -44,6 +44,6 @@ public class NegativeTest extends BaseTest {
         FiftyOnFiftyPage.addSet();
         FiftyOnFiftyPage.changeOnLastPage();
 
-        Assert.assertTrue(!FiftyOnFiftyPage.buyButtonIsActive());
+        Assert.assertFalse(!FiftyOnFiftyPage.buyButtonIsActive());
     }
 }
