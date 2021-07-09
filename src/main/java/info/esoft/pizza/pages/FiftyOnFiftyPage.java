@@ -33,18 +33,17 @@ public class FiftyOnFiftyPage {
 
     @Step("Добавить сет в набор")
     public static void addSet(){
-
-        buttonAddSet.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonAddSet.click();
     }
 
     @Step("Добавить пиццу 'Гавайка'")
     public static void addPizzaOne(){
-        buttonAddPizzaOne.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonAddPizzaOne.click();
     }
 
     @Step("Добавить пиццу 'Четыре сыра'")
     public static void addPizzaTwo(){
-        buttonAddPizzaTwo.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonAddPizzaTwo.click();
     }
 
     @Step("Пролистать до страницу 'Завершение' сборки набора")
