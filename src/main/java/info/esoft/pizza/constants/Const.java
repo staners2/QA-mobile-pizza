@@ -26,4 +26,10 @@ public interface Const {
         String CLEAR_BASKET = "";
         String DESCRIPTION_ERROR_PROMOCODE = "";
     }
+
+    interface Basket{
+        Integer PRICE_ONE_SET = 100;
+        Integer PRICE_SET_AND_ONE_PEPSI = 880;
+        Integer PRICE_SET_AND_TWO_PEPSI = 1060;
+    }
 }

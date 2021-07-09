@@ -1,9 +1,7 @@
 package info.esoft.pizza.helpers;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.*;
+import com.codeborne.selenide.ex.ElementNotFound;
 import com.codeborne.selenide.impl.WebDriverContainer;
 import com.sun.tools.javac.Main;
 import info.esoft.pizza.constants.Const;
@@ -14,16 +12,16 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
-import org.openqa.selenium.By;
+import io.qameta.allure.Step;
+import org.openqa.selenium.*;
 import info.esoft.pizza.pages.*;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
 
 import java.time.Duration;
 
 
 public class Helpers {
+
+    @Step("Вход в аккаунт и открытие главного меню")
     public static void authorization(){
         MainPage.openMenu();
         MenuPage.enterAccount();
@@ -34,7 +32,8 @@ public class Helpers {
         MainPage.clickMenuInNavigatePanel();
     }
 
-    public static void collectionFiftyOnFiftySet(){
+    @Step("Собрать набор 50/50 и открыть главное меню")
+    public static void collectionFiftyOnFiftySet() {
         MainPage.openSetsPage();
         SetsPage.collectionSetFiftyOnFifty();
         FiftyOnFiftyPage.addSet();
@@ -46,10 +45,11 @@ public class Helpers {
         FiftyOnFiftyPage.closePageAfterBuy();
     }
 
+    @Step("Скролинг до элемента, чтобы его было видно")
     public static void scrollToElement(SelenideElement searchElement, SelenideElement lastElementThisPage) {
         Boolean isFind = false;
 
-        Integer delY = 300;
+        Integer delY = 1200;
 
         Integer endX = 300;
         Integer endY = 220;
@@ -57,21 +57,20 @@ public class Helpers {
         Integer startX = 300;
         Integer startY = endY + delY;
 
+        Configuration.timeout = 300;
+
         while(!isFind){
             new TouchAction((PerformsTouchActions) WebDriverRunner.getWebDriver())
                     .press(PointOption.point(new Point(startX,startY)))
-                    .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(1)))
+                    .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
                     .moveTo(PointOption.point(new Point(endX,endY)))
-                    .release().perform();
+                    .release()
+                    .perform();
 
-            try{
-                searchElement.should(Condition.visible);
-            }
-            catch (Exception ex){
-                System.out.println("Is not found");
-            }
+            if (searchElement.isDisplayed())
+                isFind = true;
 
-            System.out.println("startY: " + startY + "\nendY: " + endY + "\nIsFind: " + isFind);
+            System.out.println("IsFind: " + isFind);
         }
     }
 }

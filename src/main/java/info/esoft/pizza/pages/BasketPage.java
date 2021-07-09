@@ -1,7 +1,10 @@
 package info.esoft.pizza.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import com.sun.tools.corba.se.idl.toJavaPortable.Helper;
+import info.esoft.pizza.helpers.Helpers;
 import io.appium.java_client.android.AndroidDriver;
+import io.qameta.allure.Step;
 import org.aspectj.weaver.ast.And;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +14,6 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class BasketPage {
 
-    // TODO Требуется рефакторинг
     private static SelenideElement buttonRemoveSet = $x("(//android.view.View[@content-desc=\"#\"])[1]/android.view.View/android.view.View"),
             buttonRemovePepsi = $x("(//android.view.View[@content-desc=\"#\"])[1]/android.view.View/android.view.View"),
 
@@ -33,80 +35,91 @@ public class BasketPage {
             inputStreet = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View[8]/android.view.View[1]/android.widget.EditText"),
             inputAppartment = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View[3]/android.view.View[1]/android.widget.EditText"),
 
-            buttonCancelAccess = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View[2]"),
             buttonDeny = $(By.id("com.android.permissioncontroller:id/permission_deny_button"));
 
+    @Step("Удалить из корзины набор")
     public static void removeSet(){
         buttonRemoveSet.click();
     }
 
+    @Step("Подтвердить удаление из корзины набора")
     public static void agreeRemoveSet(){
         buttonAgreeRemoveSet.click();
     }
 
+    @Step("Удалить из корзины пепси")
     public static void removePepsi(){
         buttonRemovePepsi.click();
     }
 
+    @Step("Ввести имя")
     public static void sendName(String name){
-        inputName.scrollTo();
+        Helpers.scrollToElement(inputName, null);
         inputName.sendKeys(name);
     }
 
+    @Step("Выбрать адресс из списка")
     public static void sendAddress(){
-        selectListAddress.scrollTo();
+        Helpers.scrollToElement(selectListAddress, null);
         selectListAddress.click();
         selectAddress.click();
     }
 
+    @Step("Ввести улицу")
     public static void sendStreet(String street){
-        inputStreet.scrollTo();
+        Helpers.scrollToElement(inputStreet, null);
         inputStreet.sendKeys(street);
     }
 
+    @Step("Ввести дом")
     public static void sendAppartment(String street){
-        inputAppartment.scrollTo();
+        Helpers.scrollToElement(inputAppartment, null);
         inputAppartment.sendKeys(street);
     }
 
+    @Step("Ввести промокод")
     public static void sendPromocode(String promocode){
-        inputPromocode.scrollTo();
         inputPromocode.sendKeys(promocode);
     }
 
+    @Step("Нажать кнопку 'Применить промокод'")
     public static void agreePromocode(){
-        buttonAgreePromocode.scrollTo();
         buttonAgreePromocode.click();
     }
 
+    @Step("Закрыть окно после применения промокода")
     public static void closeWindowAfterAgreePromocode(){
         closeWindowAfterAgreePromocode.click();
     }
 
+    @Step("Закрыть окно при запуске приложения о выдаче доступа к телефону")
     public static void cancelConditionAccessNumber(){
         buttonDeny.click();
     }
 
-    public static String getDescriptionAfterRemoveSet(){
-        return descriptionAfterRemovePizza.getText();
-    }
-
+    @Step("Активна ли кнопка 'Оформить заказ'")
     public static Boolean buttonBuyOrderIsActive(){
-        return Boolean.getBoolean(buttonBuyOrder.getAttribute("clickable"));
+        switch (buttonBuyOrder.getAttribute("clickable")){
+            case "true":
+                return true;
+            case "false":
+                return false;
+            default:
+                return null;
+        }
     }
 
-    public static String getPriceOrder(){
-        return textPriceOrder.getText();
+    @Step("Получить стоимость заказа")
+    public static Integer getPriceOrder(){
+        return Integer.parseInt(textPriceOrder.text());
     }
 
-    public static void cancelAccess(){
-        buttonCancelAccess.click();
-    }
-
+    @Step("Является ли корзина пустой")
     public static Boolean basketIsEmpty(){
         return descriptionAfterRemovePizza.text().contains("Пустая корзина");
     }
 
+    @Step("Получить описание после применения промокода")
     public static String getDescriptionAfterAgreePromocode(){
         return descriptionAfterAgreePromocode.text();
     }
