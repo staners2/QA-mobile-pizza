@@ -1,10 +1,13 @@
 package info.esoft.pizza.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -20,35 +23,34 @@ public class SetsPage {
 
     @Step("Открыть фильтр товаров")
     public static void openFilter(){
-        buttonFilter.click();
+        buttonFilter.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Начать собирать набор 50/50")
     public static void collectionSetFiftyOnFifty(){
-        buttonCollectSetFiftyOnFifty.click();
+        buttonCollectSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Получить название набора 50/50")
     public static String getTitleSetFiftyOnFifty(){
-        return titleSetFiftyOnFifty.getText();
+        return titleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).text();
     }
 
     @Step("Получить описание набора 50/50")
     public static String getSubtitleSetFiftyOnFifty(){
-        return subtitleSetFiftyOnFifty.getText();
+        return subtitleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).text();
     }
 
     @Step("Получить кол-во товаров подходящие под выбранный фильтр")
     public static Integer getCountProducts(){
-        String textCount = textCountOffer.text().substring(textCountOffer.text().length(), textCountOffer.text().length() - 12);
-        return Integer.getInteger(textCount);
+        String textCount = textCountOffer.text().substring(0, textCountOffer.text().length() - 12);
+        return Integer.parseInt(textCount);
     }
 
-    // TODO String index out of range: -3 ERROR
     @Step("Получить стоимость набора 50/50")
     public static Integer getPriceSet(){
-        String price = priceSetFiftyOnFifty.text().substring(priceSetFiftyOnFifty.text().length(), priceSetFiftyOnFifty.text().length() - 3);
-        price = price.substring(price.length() - (price.length()-3));
-        return Integer.getInteger(price);
+        String price = priceSetFiftyOnFifty.text().substring(0, priceSetFiftyOnFifty.text().length() - 3);
+        price = price.substring(3, price.length());
+        return Integer.parseInt(price);
     }
 }

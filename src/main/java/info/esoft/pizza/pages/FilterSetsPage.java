@@ -1,10 +1,13 @@
 package info.esoft.pizza.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -23,41 +26,41 @@ public class FilterSetsPage {
 
     @Step("Открыть меню для изменения диапазона цены")
     public static void openChangeMenu(){
-        buttonSelectPrice.click();
+        buttonSelectPrice.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Ввести цену в поле 'Минимальная цена'")
     public static void sendMinPrice(String minPrice){
-       inputMinPrice.sendKeys(minPrice);
+       inputMinPrice.shouldBe(Condition.visible, Duration.ofSeconds(3)).sendKeys(minPrice);
     }
 
     @Step("Ввести цену в поле 'Максимальная цена'")
     public static void sendMaxPrice(String maxPrice){
-        inputMaxPrice.sendKeys(maxPrice);
+        inputMaxPrice.shouldBe(Condition.visible, Duration.ofSeconds(3)).sendKeys(maxPrice);
     }
 
     @Step("Применить изменения")
     public static void agreeChange(){
-        buttonAgreeChange.click();
+        buttonAgreeChange.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Прменить фильтр")
     public static void agreeFilter(){
-        buttonAgreeFilter.click();
+        buttonAgreeFilter.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Нажать кнопку 'Очистить фильтр'")
     public static void clearFilter(){
-        buttonClearFilter.click();
+        buttonClearFilter.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Получить установленную максимальную стоимость")
     public static Integer getMaxPrice(){
-        return Integer.parseInt(maxPrice.text());
+        return Integer.parseInt(maxPrice.shouldBe(Condition.visible, Duration.ofSeconds(3)).text());
     }
 
     @Step("Получить установленную минимальную стоимость")
     public static Integer getMinPrice(){
-        return Integer.parseInt(minPrice.text());
+        return Integer.parseInt(minPrice.shouldBe(Condition.visible, Duration.ofSeconds(3)).text());
     }
 }

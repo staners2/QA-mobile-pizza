@@ -49,15 +49,13 @@ public class Helpers {
     public static void scrollToElement(SelenideElement searchElement, SelenideElement lastElementThisPage) {
         Boolean isFind = false;
 
-        Integer delY = 1200;
+        Integer delY = 1000;
 
         Integer endX = 300;
         Integer endY = 220;
 
         Integer startX = 300;
         Integer startY = endY + delY;
-
-        Configuration.timeout = 300;
 
         while(!isFind){
             new TouchAction((PerformsTouchActions) WebDriverRunner.getWebDriver())

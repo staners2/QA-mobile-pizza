@@ -33,22 +33,24 @@ public class FiftyOnFiftyPage {
 
     @Step("Добавить сет в набор")
     public static void addSet(){
-        buttonAddSet.click();
+
+        buttonAddSet.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Добавить пиццу 'Гавайка'")
     public static void addPizzaOne(){
-        buttonAddPizzaOne.click();
+        buttonAddPizzaOne.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Добавить пиццу 'Четыре сыра'")
     public static void addPizzaTwo(){
-        buttonAddPizzaTwo.click();
+        buttonAddPizzaTwo.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Пролистать до страницу 'Завершение' сборки набора")
     public static void changeOnLastPage() {
         try{
+            // TODO Не прокликиваются все 3 раза
             buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
             buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
             buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
@@ -60,29 +62,29 @@ public class FiftyOnFiftyPage {
 
     @Step("Переключить на страницу выбора 'Пиццы'")
     public static void nextPageOnSelectPizza(){
-        buttonPageOnSelectPizza.click();
+        buttonPageOnSelectPizza.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Нажать кнопку 'купить' набор")
     public static void buySet(){
-        buttonBuy.click();
+        buttonBuy.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Получить название набора 50/50")
     public static String getTitleSetFiftyOnFifty(){
-        return titleSetFiftyOnFifty.getText();
+        return titleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).getText();
     }
 
     @Step("Получить описание набора 50/50")
     public static String getSubtitleSetFiftyOnFifty(){
-        return subtitleSetFiftyOnFifty.getText();
+        return subtitleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).getText();
     }
 
     @Step("Получить стоимость набора 50/50")
     public static Integer getPriceSet(){
-        String price = priceSetFiftyOnFifty.text().substring(priceSetFiftyOnFifty.text().length(), priceSetFiftyOnFifty.text().length() - 3);
-        price = price.substring(price.length() - (price.length()-3));
-        return Integer.getInteger(price);
+        String price = priceSetFiftyOnFifty.text().substring(0, priceSetFiftyOnFifty.text().length() - 3);
+        price = price.substring(3, price.length());
+        return Integer.parseInt(price);
     }
 
     @Step("Проверить доступно ли нажатие кнопки 'Купить' набор")
@@ -99,8 +101,8 @@ public class FiftyOnFiftyPage {
 
     @Step("Закрыть окно после покупки набора")
     public static void closePageAfterBuy(){
-        buttonOkInstruction.click();
-        buttonBack.click();
+        buttonOkInstruction.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonBack.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
         MainPage.clickMenuInNavigatePanel();
     }
 }

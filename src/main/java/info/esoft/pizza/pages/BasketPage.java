@@ -1,5 +1,6 @@
 package info.esoft.pizza.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.sun.tools.corba.se.idl.toJavaPortable.Helper;
 import info.esoft.pizza.helpers.Helpers;
@@ -8,6 +9,8 @@ import io.qameta.allure.Step;
 import org.aspectj.weaver.ast.And;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -39,17 +42,17 @@ public class BasketPage {
 
     @Step("Удалить из корзины набор")
     public static void removeSet(){
-        buttonRemoveSet.click();
+        buttonRemoveSet.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Подтвердить удаление из корзины набора")
     public static void agreeRemoveSet(){
-        buttonAgreeRemoveSet.click();
+        buttonAgreeRemoveSet.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Удалить из корзины пепси")
     public static void removePepsi(){
-        buttonRemovePepsi.click();
+        buttonRemovePepsi.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Ввести имя")
@@ -61,40 +64,40 @@ public class BasketPage {
     @Step("Выбрать адресс из списка")
     public static void sendAddress(){
         Helpers.scrollToElement(selectListAddress, null);
-        selectListAddress.click();
-        selectAddress.click();
+        selectListAddress.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        selectAddress.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Ввести улицу")
     public static void sendStreet(String street){
         Helpers.scrollToElement(inputStreet, null);
-        inputStreet.sendKeys(street);
+        inputStreet.shouldBe(Condition.visible, Duration.ofSeconds(3)).sendKeys(street);
     }
 
     @Step("Ввести дом")
     public static void sendAppartment(String street){
         Helpers.scrollToElement(inputAppartment, null);
-        inputAppartment.sendKeys(street);
+        inputAppartment.shouldBe(Condition.visible, Duration.ofSeconds(3)).sendKeys(street);
     }
 
     @Step("Ввести промокод")
     public static void sendPromocode(String promocode){
-        inputPromocode.sendKeys(promocode);
+        inputPromocode.shouldBe(Condition.visible, Duration.ofSeconds(3)).sendKeys(promocode);
     }
 
     @Step("Нажать кнопку 'Применить промокод'")
     public static void agreePromocode(){
-        buttonAgreePromocode.click();
+        buttonAgreePromocode.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Закрыть окно после применения промокода")
     public static void closeWindowAfterAgreePromocode(){
-        closeWindowAfterAgreePromocode.click();
+        closeWindowAfterAgreePromocode.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Закрыть окно при запуске приложения о выдаче доступа к телефону")
     public static void cancelConditionAccessNumber(){
-        buttonDeny.click();
+        buttonDeny.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Активна ли кнопка 'Оформить заказ'")
@@ -111,16 +114,16 @@ public class BasketPage {
 
     @Step("Получить стоимость заказа")
     public static Integer getPriceOrder(){
-        return Integer.parseInt(textPriceOrder.text());
+        return Integer.parseInt(textPriceOrder.shouldBe(Condition.visible, Duration.ofSeconds(3)).text());
     }
 
     @Step("Является ли корзина пустой")
     public static Boolean basketIsEmpty(){
-        return descriptionAfterRemovePizza.text().contains("Пустая корзина");
+        return descriptionAfterRemovePizza.shouldBe(Condition.visible, Duration.ofSeconds(3)).text().contains("Пустая корзина");
     }
 
     @Step("Получить описание после применения промокода")
     public static String getDescriptionAfterAgreePromocode(){
-        return descriptionAfterAgreePromocode.text();
+        return descriptionAfterAgreePromocode.shouldBe(Condition.visible, Duration.ofSeconds(3)).text();
     }
 }
