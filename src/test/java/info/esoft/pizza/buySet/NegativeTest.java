@@ -25,7 +25,7 @@ public class NegativeTest extends BaseTest {
 
     @Test
     @DisplayName("Стадия выбора 'Набора', выбрав только две пиццы")
-    public void addTwoPizzaWhenPurchasedSetTest(){
+    public void addTwoPizzaWhenPurchasedSetTest() {
         MainPage.openSetsPage();
         SetsPage.collectionSetFiftyOnFifty();
         FiftyOnFiftyPage.nextPageOnSelectPizza();
@@ -38,10 +38,11 @@ public class NegativeTest extends BaseTest {
 
     @Test
     @DisplayName("Стадия выбора 'Набора', выбрав только набор")
-    public void addSetWhenPurchasedSetTest(){
+    public void addSetWhenPurchasedSetTest() throws InterruptedException {
         MainPage.openSetsPage();
         SetsPage.collectionSetFiftyOnFifty();
         FiftyOnFiftyPage.addSet();
+        FiftyOnFiftyPage.nextPageOnSelectPizza();
         FiftyOnFiftyPage.changeOnLastPage();
 
         Assert.assertFalse(!FiftyOnFiftyPage.buyButtonIsActive());

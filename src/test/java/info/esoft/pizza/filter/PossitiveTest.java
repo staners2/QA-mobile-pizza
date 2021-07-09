@@ -37,14 +37,14 @@ public class PossitiveTest extends BaseTest {
         FilterSetsPage.agreeChange();
         FilterSetsPage.agreeFilter();
 
-        FilterSetsPage.openChangeMenu();
+        SetsPage.openFilter();
         FilterSetsPage.clearFilter();
 
         Assert.assertTrue(SetsPage.getCountProducts().equals(Const.Filter.COUNT_PRODUCT_AFTER_CLEAR));
     }
 
     @Test
-    @DisplayName("Очистить фильтр с диапазоном 700-799")
+    @DisplayName("Применить фильтр с диапазоном 799-700 руб.")
     public void setIncorrectFilter(){
         MainPage.openSetsPage();
         SetsPage.openFilter();

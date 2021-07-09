@@ -4,6 +4,7 @@ import info.esoft.pizza.BaseTest;
 import info.esoft.pizza.constants.Const;
 import info.esoft.pizza.helpers.Helpers;
 import info.esoft.pizza.pages.BasketPage;
+import info.esoft.pizza.pages.DrinkPage;
 import info.esoft.pizza.pages.MainPage;
 import org.junit.Assert;
 import org.junit.jupiter.api.DisplayName;
@@ -15,13 +16,39 @@ public class PossitiveTest extends BaseTest {
     @DisplayName("Удаление всех товаров из корзины")
     public void deleteAllProducts(){
         Helpers.authorization();
+        Helpers.collectionFiftyOnFiftySet();
         MainPage.openBasket();
         BasketPage.cancelConditionAccessNumber();
         BasketPage.removeSet();
         BasketPage.agreeRemoveSet();
-        Assert.assertTrue(BasketPage.getDescriptionAfterRemoveSet().equals(Const.Message.CLEAR_BASKET));
+        Assert.assertTrue(BasketPage.basketIsEmpty());
     }
 
-    // TODO 2 теста
+    @Test
+    @DisplayName("Добавление товара в корзину при нескольких переходах в корзину")
+    public void addProductInBasketAndExitBasketTest(){
+        Helpers.authorization();
+        Helpers.collectionFiftyOnFiftySet();
+        MainPage.openDrinkPage();
+        DrinkPage.buyPepsi();
+        DrinkPage.closeInstruction();
+        DrinkPage.upCountPepsi();
+        MainPage.openBasket();
+        Assert.assertTrue(BasketPage.getPriceOrder().equals(Const.Basket.PRICE_SET_AND_TWO_PEPSI));
+    }
+
+    @Test
+    @DisplayName("Удаление одного товара из корзины")
+    public void removeOneProductFromBasketTest(){
+        Helpers.authorization();
+        Helpers.collectionFiftyOnFiftySet();
+        MainPage.openDrinkPage();
+        DrinkPage.buyPepsi();
+        DrinkPage.closeInstruction();
+        DrinkPage.upCountPepsi();
+        MainPage.openBasket();
+        BasketPage.removePepsi();
+        Assert.assertTrue(BasketPage.getPriceOrder().equals(Const.Basket.PRICE_SET_AND_ONE_PEPSI));
+    }
 
 }

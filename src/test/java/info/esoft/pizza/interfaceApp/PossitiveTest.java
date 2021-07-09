@@ -25,14 +25,6 @@ public class PossitiveTest extends BaseTest {
     @Test
     @DisplayName("Пункт 'Наборы' присутствует на главном меню")
     public void setIsHaveInMenu() throws InterruptedException {
-        // Helpers.scrollToElement(MainPage.buttonSetFFF, 0.5, 0.8, 0.5, 0.2);
-
-        System.out.println("start");
-        Helpers.scrollToElement(MainPage.searchElement, MainPage.lastElement);
-        System.out.println("end");
-        /*MobileBy.ByAndroidUIAutomator pbj = new MobileBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"Наборы\"))");
-*/
-        Thread.sleep(2000);
         Assert.assertTrue(MainPage.setIsHaveInMenu());
     }
 

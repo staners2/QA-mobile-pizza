@@ -25,7 +25,7 @@ public class NegativeTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Ввести номер и не подтверждать соглашения")
+    @DisplayName("Ввести номер и не подтверждать все соглашения")
     public void inputNumberAndNotAgreeAllCondition(){
         MainPage.openMenu();
         MenuPage.enterAccount();
@@ -36,7 +36,7 @@ public class NegativeTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Ввести номер и не подтверждать соглашения")
+    @DisplayName("Ввести номер и не подтверждать первое соглашения")
     public void inputNumberAndNotAgreeOneCondition(){
         MainPage.openMenu();
         MenuPage.enterAccount();
@@ -48,7 +48,7 @@ public class NegativeTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Ввести номер и не подтверждать соглашения")
+    @DisplayName("Ввести номер и не подтверждать второе соглашения")
     public void inputNumberAndNotAgreeTwoCondition(){
         MainPage.openMenu();
         MenuPage.enterAccount();
@@ -56,6 +56,6 @@ public class NegativeTest extends BaseTest {
         AuthorizationPage.agreeConditionOne();
         AuthorizationPage.clickNextButton();
 
-        Assert.assertTrue(!AuthorizationPage.isInputValidData());
+        Assert.assertFalse(!AuthorizationPage.isInputValidData());
     }
 }

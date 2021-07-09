@@ -18,13 +18,13 @@ public class PossitiveTest extends BaseTest {
         MainPage.openSetsPage();
         String titleView = SetsPage.getTitleSetFiftyOnFifty();
         String subtitleView = SetsPage.getSubtitleSetFiftyOnFifty();
-        String priceView = SetsPage.getPriceSetFiftyOnFifty();
+        Integer priceView = SetsPage.getPriceSet();
 
         SetsPage.collectionSetFiftyOnFifty();
 
         String titlePurchase = FiftyOnFiftyPage.getTitleSetFiftyOnFifty();
         String subtitlePurchase = FiftyOnFiftyPage.getSubtitleSetFiftyOnFifty();
-        String pricePurchase = FiftyOnFiftyPage.getPriceSetFiftyOnFifty();
+        Integer pricePurchase = FiftyOnFiftyPage.getPriceSet();
 
         boolean result = titleView.equals(titlePurchase) && subtitleView.equals(subtitlePurchase) && priceView.equals(pricePurchase);
         Assert.assertTrue(result);
@@ -32,7 +32,7 @@ public class PossitiveTest extends BaseTest {
 
     @Test
     @DisplayName("Стадия выбора 'Набора', выбрав только две пиццы и набор")
-    public void addTwoPizzaAndSetWhenPurchasedTest(){
+    public void addTwoPizzaAndSetWhenPurchasedTest() throws InterruptedException {
         MainPage.openSetsPage();
         SetsPage.collectionSetFiftyOnFifty();
 
