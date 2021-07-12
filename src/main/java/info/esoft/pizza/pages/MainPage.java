@@ -16,13 +16,13 @@ import static com.codeborne.selenide.Selenide.$x;
 public class MainPage{
 
     private static SelenideElement buttonDeny = $(By.id("com.android.permissioncontroller:id/permission_deny_button")),
-            buttonAgreePromo = $x("//android.view.View[@resource-id='app']/android.view.View[3]/android.view.View[2]/android.view.View"),
+            buttonAgreePromo = $x("//android.view.View[@resource-id='app']/android.view.View[3]/android.view.View[2]/android.view.View[contains(@text,'ОК')]"),
             buttonOpenMenu = $x("//android.view.View[@content-desc='#']"),
-            buttonSet = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ListView/android.view.View[3]/android.view.View"),
-            buttonBasket = $x("//android.view.View[@content-desc='КОРЗИНА']"),
+            buttonSet = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ListView/android.view.View/android.view.View[@content-desc='Наборы']"),
+            buttonBasket = $x("//android.view.View[contains(@content-desc, 'КОРЗИНА')]"),
 
             buttonMenuInNav = $x("//android.view.View[@content-desc='МЕНЮ']"),
-            buttonDrink = $x("");
+            buttonDrink = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ListView/android.view.View/android.view.View[@content-desc='Напитки']");
 
     @Step("Закрыть окно при запуске приложения о выдаче доступа к телефону")
     public static void cancelConditionAccessNumber(){
@@ -48,7 +48,7 @@ public class MainPage{
     @Step("Открыть меню с товаром 'Напитки'")
     public static void openDrinkPage(){
         Helpers.scrollToElement(buttonDrink, null);
-        buttonSet.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonDrink.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Открыть корзину")

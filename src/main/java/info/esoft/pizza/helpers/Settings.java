@@ -30,13 +30,14 @@ public class Settings {
         capabilities.setCapability(MobileCapabilityType.APP, app);
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, platformName);
         capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, automationName);
+        // capabilities.setCapability("fullReset", true);
 
         return capabilities;
     }
 
     protected static AndroidDriver createAndroidDriver() throws MalformedURLException {
         AndroidDriver<AndroidElement> driver = new AndroidDriver<>(new URL(connectAppiumString), setSettingCapabilities());
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
     }
 

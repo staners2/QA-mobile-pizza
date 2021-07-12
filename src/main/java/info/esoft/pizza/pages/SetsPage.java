@@ -38,7 +38,7 @@ public class SetsPage {
 
     @Step("Получить описание набора 50/50")
     public static String getSubtitleSetFiftyOnFifty(){
-        return subtitleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).text();
+        return subtitleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).text().substring(0, 38);
     }
 
     @Step("Получить кол-во товаров подходящие под выбранный фильтр")
@@ -48,7 +48,7 @@ public class SetsPage {
     }
 
     @Step("Получить стоимость набора 50/50")
-    public static Integer getPriceSet(){
+    public static int getPriceSet(){
         String price = priceSetFiftyOnFifty.text().substring(0, priceSetFiftyOnFifty.text().length() - 3);
         price = price.substring(3, price.length());
         return Integer.parseInt(price);

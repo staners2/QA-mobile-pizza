@@ -12,9 +12,9 @@ import static com.codeborne.selenide.Selenide.$x;
 public class DrinkPage {
 
     // Pepsi 1.5l
-    private static SelenideElement buttonBuyPepsi = $x(""),
-            buttonOkInstruction = $x(""),
-            buttonUpCountPepsi = $x("");
+    private static SelenideElement buttonBuyPepsi = $x("(//android.view.View[@content-desc='КУПИТЬ'])[2]"),
+            buttonOkInstruction = $x("//android.view.View[@content-desc='ВСЕ ПОНЯТНО!']"),
+    buttonUpCountPepsi = $x(".//android.view.View[contains(@content-desc, 'Pepsi 1.5 л')]/../android.view.View[2]/android.view.View/android.view.View[2]");
 
     @Step("Покупка Pepsi")
     public static void buyPepsi(){

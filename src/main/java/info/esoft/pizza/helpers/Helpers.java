@@ -22,7 +22,7 @@ import java.time.Duration;
 public class Helpers {
 
     @Step("Вход в аккаунт и открытие главного меню")
-    public static void authorization(){
+    public static void authorization() {
         MainPage.openMenu();
         MenuPage.enterAccount();
         AuthorizationPage.sendNumber(Const.Account.NUMBER);
@@ -47,21 +47,22 @@ public class Helpers {
 
     @Step("Скролинг до элемента, чтобы его было видно")
     public static void scrollToElement(SelenideElement searchElement, SelenideElement lastElementThisPage) {
-        Boolean isFind = false;
+        Boolean isFind = searchElement.isDisplayed();
 
         Integer delY = 1000;
 
         Integer endX = 300;
-        Integer endY = 220;
+        Integer endY = 250;
 
         Integer startX = 300;
         Integer startY = endY + delY;
 
-        while(!isFind){
+        System.out.println("Search start!");
+        while (!isFind) {
             new TouchAction((PerformsTouchActions) WebDriverRunner.getWebDriver())
-                    .press(PointOption.point(new Point(startX,startY)))
+                    .press(PointOption.point(new Point(startX, startY)))
                     .waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000)))
-                    .moveTo(PointOption.point(new Point(endX,endY)))
+                    .moveTo(PointOption.point(new Point(endX, endY)))
                     .release()
                     .perform();
 

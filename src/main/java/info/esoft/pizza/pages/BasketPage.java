@@ -2,26 +2,21 @@ package info.esoft.pizza.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.sun.tools.corba.se.idl.toJavaPortable.Helper;
+import info.esoft.pizza.constants.Const;
 import info.esoft.pizza.helpers.Helpers;
-import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
-import org.aspectj.weaver.ast.And;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
 import java.time.Duration;
-
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class BasketPage {
 
     private static SelenideElement buttonRemoveSet = $x("(//android.view.View[@content-desc=\"#\"])[1]/android.view.View/android.view.View"),
             buttonRemovePepsi = $x("(//android.view.View[@content-desc=\"#\"])[1]/android.view.View/android.view.View"),
+            buttonBuyOrder = $x(""),
+            modalDialogOrderBuySuccessful = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]"),
+            buttonBackspace = $x("//android.view.View[@text ='arrow_left_md']"),
 
             textPriceOrder = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.ListView/android.view.View/android.view.View/android.widget.TextView[1]"),
-            buttonBuyOrder = $x("//android.view.View[@content-desc=\"ОФОРМИТЬ ЗАКАЗ\"]"),
             buttonAgreeRemoveSet = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View[2]"),
             // 'Пустая корзина'
             descriptionAfterRemovePizza = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]"),
@@ -36,9 +31,10 @@ public class BasketPage {
             selectListAddress = $x("//android.view.View[@content-desc='! Район Выберите район']"),
             selectAddress = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ListView/android.view.View[3]/android.view.View/android.view.View[1]/android.view.View"),
             inputStreet = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View[8]/android.view.View[1]/android.widget.EditText"),
-            inputAppartment = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View[3]/android.view.View[1]/android.widget.EditText"),
+            inputHouse = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[1]/android.view.View[6]/android.view.View[1]/android.widget.EditText"),
 
-            buttonDeny = $(By.id("com.android.permissioncontroller:id/permission_deny_button"));
+
+            buttonCancelGiveNumber = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View[3]/android.view.View[2]/android.view.View[2]");
 
     @Step("Удалить из корзины набор")
     public static void removeSet(){
@@ -75,9 +71,9 @@ public class BasketPage {
     }
 
     @Step("Ввести дом")
-    public static void sendAppartment(String street){
-        Helpers.scrollToElement(inputAppartment, null);
-        inputAppartment.shouldBe(Condition.visible, Duration.ofSeconds(3)).sendKeys(street);
+    public static void sendHouse(String street){
+        Helpers.scrollToElement(inputHouse, null);
+        inputHouse.shouldBe(Condition.visible, Duration.ofSeconds(3)).sendKeys(street);
     }
 
     @Step("Ввести промокод")
@@ -97,33 +93,41 @@ public class BasketPage {
 
     @Step("Закрыть окно при запуске приложения о выдаче доступа к телефону")
     public static void cancelConditionAccessNumber(){
-        buttonDeny.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonCancelGiveNumber.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+    }
+
+    @Step("Выйти из корзины")
+    public static void closeBasket(){
+        buttonBackspace.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 
     @Step("Активна ли кнопка 'Оформить заказ'")
     public static Boolean buttonBuyOrderIsActive(){
-        switch (buttonBuyOrder.getAttribute("clickable")){
-            case "true":
-                return true;
-            case "false":
-                return false;
-            default:
-                return null;
+        if (modalDialogOrderBuySuccessful.isDisplayed()) {
+            return true;
+        } else {
+            return false;
         }
     }
 
     @Step("Получить стоимость заказа")
-    public static Integer getPriceOrder(){
+    public static int getPriceOrder(){
         return Integer.parseInt(textPriceOrder.shouldBe(Condition.visible, Duration.ofSeconds(3)).text());
     }
 
     @Step("Является ли корзина пустой")
     public static Boolean basketIsEmpty(){
-        return descriptionAfterRemovePizza.shouldBe(Condition.visible, Duration.ofSeconds(3)).text().contains("Пустая корзина");
+        return descriptionAfterRemovePizza.shouldBe(Condition.visible, Duration.ofSeconds(3)).text().contains(Const.Message.CLEAR_BASKET);
     }
 
     @Step("Получить описание после применения промокода")
     public static String getDescriptionAfterAgreePromocode(){
         return descriptionAfterAgreePromocode.shouldBe(Condition.visible, Duration.ofSeconds(3)).text();
+    }
+
+    @Step("Оформить заказ")
+    public static void buyOrder(){
+/*        Helpers.scrollToElement(buttonBuyOrder, null);*/
+        buttonBuyOrder.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
     }
 }

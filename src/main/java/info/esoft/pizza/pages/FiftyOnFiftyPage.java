@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selenide.$x;
 public class FiftyOnFiftyPage {
 
     private static SelenideElement buttonPageOnSelectPizza = $x("//android.view.View[@content-desc=\"Пиццы\"]"),
-            buttonLastPage = $x("//android.view.View[@content-desc=\"Завершить\"]"),
             buttonNextPage = $x("//android.view.View[@content-desc='ДАЛЕЕ']/android.widget.TextView"),
             buttonBuy = $x("//android.view.View[@content-desc=\"КУПИТЬ\"]"),
             buttonOkInstruction = $x("//android.view.View[@content-desc=\"ВСЕ ПОНЯТНО!\"]"),
@@ -49,7 +48,6 @@ public class FiftyOnFiftyPage {
     @Step("Пролистать до страницу 'Завершение' сборки набора")
     public static void changeOnLastPage() {
         try{
-            // TODO Не прокликиваются все 3 раза
             buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
             buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
             buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
@@ -76,25 +74,22 @@ public class FiftyOnFiftyPage {
 
     @Step("Получить описание набора 50/50")
     public static String getSubtitleSetFiftyOnFifty(){
-        return subtitleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).getText();
+        return subtitleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).getText().substring(0, 39);
     }
 
     @Step("Получить стоимость набора 50/50")
-    public static Integer getPriceSet(){
+    public static int getPriceSet(){
         String price = priceSetFiftyOnFifty.text().substring(0, priceSetFiftyOnFifty.text().length() - 3);
-        price = price.substring(3, price.length());
         return Integer.parseInt(price);
     }
 
     @Step("Проверить доступно ли нажатие кнопки 'Купить' набор")
     public static Boolean buyButtonIsActive(){
-        switch (buttonBuy.getAttribute("clickable")){
-            case "true":
-                return true;
-            case "false":
-                return false;
-            default:
-                return null;
+        if (buttonOkInstruction.isDisplayed()){
+            return true;
+        }
+         else {
+            return false;
         }
     }
 
