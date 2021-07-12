@@ -1,7 +1,4 @@
-package info.esoft.pizza.interfaceApp;
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+package info.esoft.pizza.interfaceapp;
 
 public class NegativeTest {
 }

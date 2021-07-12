@@ -51,6 +51,7 @@ public class PossitiveTest extends BaseTest {
         FilterSetsPage.openChangeMenu();
         FilterSetsPage.sendMinPrice(Const.Filter.MAX_PRICE);
         FilterSetsPage.sendMaxPrice(Const.Filter.MIN_PRICE);
+        FilterSetsPage.agreeChange();
 
         Integer minPrice = FilterSetsPage.getMinPrice();
         Integer maxPrice = FilterSetsPage.getMaxPrice();

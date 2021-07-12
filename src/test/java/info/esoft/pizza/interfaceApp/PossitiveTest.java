@@ -1,24 +1,11 @@
-package info.esoft.pizza.interfaceApp;
+package info.esoft.pizza.interfaceapp;
 
-import com.codeborne.selenide.WebDriverRunner;
 import info.esoft.pizza.BaseTest;
-import info.esoft.pizza.helpers.Helpers;
 import info.esoft.pizza.pages.MainPage;
 import info.esoft.pizza.pages.MenuPage;
-import info.esoft.pizza.pages.SetsPage;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileBy;
-import io.appium.java_client.PerformsTouchActions;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Assert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
-
-import java.time.Duration;
 
 public class PossitiveTest extends BaseTest {
 
@@ -47,6 +34,7 @@ public class PossitiveTest extends BaseTest {
     @Test
     @DisplayName("Логотип отображается в меню")
     public void logoVisibleInMenu(){
+        // TODO Сделать проверку логотипа
         Assert.assertTrue(true);
     }
 }

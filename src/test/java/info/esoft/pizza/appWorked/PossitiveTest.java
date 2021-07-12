@@ -1,4 +1,4 @@
-package info.esoft.pizza.appWorked;
+package info.esoft.pizza.appworked;
 
 import info.esoft.pizza.BaseTest;
 import info.esoft.pizza.pages.MainPage;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class PossitiveTest extends BaseTest {
 
     @Test
-    @DisplayName("Приложение работает")
+    @DisplayName("Приложение запускается")
     public void appIsWorked(){
         Assert.assertTrue(MainPage.setIsHaveInMenu());
     }

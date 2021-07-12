@@ -1,4 +1,4 @@
-package info.esoft.pizza.buySet;
+package info.esoft.pizza.buyset;
 
 import info.esoft.pizza.BaseTest;
 import info.esoft.pizza.pages.FiftyOnFiftyPage;
@@ -8,8 +8,6 @@ import org.junit.Assert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Set;
-
 public class PossitiveTest extends BaseTest {
 
     @DisplayName("Совпадение информации о товаре при просмотре и приобретении")
@@ -18,21 +16,22 @@ public class PossitiveTest extends BaseTest {
         MainPage.openSetsPage();
         String titleView = SetsPage.getTitleSetFiftyOnFifty();
         String subtitleView = SetsPage.getSubtitleSetFiftyOnFifty();
-        Integer priceView = SetsPage.getPriceSet();
+        int priceView = SetsPage.getPriceSet();
 
         SetsPage.collectionSetFiftyOnFifty();
 
         String titlePurchase = FiftyOnFiftyPage.getTitleSetFiftyOnFifty();
         String subtitlePurchase = FiftyOnFiftyPage.getSubtitleSetFiftyOnFifty();
-        Integer pricePurchase = FiftyOnFiftyPage.getPriceSet();
+        int pricePurchase = FiftyOnFiftyPage.getPriceSet();
 
-        boolean result = titleView.equals(titlePurchase) && subtitleView.equals(subtitlePurchase) && priceView.equals(pricePurchase);
+        boolean result = titlePurchase.contains(titleView) && subtitlePurchase.contains(subtitleView) && pricePurchase == priceView;
+
         Assert.assertTrue(result);
     }
 
     @Test
     @DisplayName("Стадия выбора 'Набора', выбрав только две пиццы и набор")
-    public void addTwoPizzaAndSetWhenPurchasedTest() throws InterruptedException {
+    public void addTwoPizzaAndSetWhenPurchasedTest() {
         MainPage.openSetsPage();
         SetsPage.collectionSetFiftyOnFifty();
 
@@ -42,7 +41,7 @@ public class PossitiveTest extends BaseTest {
         FiftyOnFiftyPage.addPizzaTwo();
 
         FiftyOnFiftyPage.changeOnLastPage();
-
+        FiftyOnFiftyPage.buySet();
         Assert.assertTrue(FiftyOnFiftyPage.buyButtonIsActive());
     }
 }

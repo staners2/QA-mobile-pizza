@@ -9,8 +9,9 @@ import org.junit.Assert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PossitiveTest {
+public class PossitiveTest extends BaseTest{
 
+    // TODO Запустить еще раз
     @Test
     @DisplayName("Оформление заказа с корректно введенными данными")
     public void formAnOrderWithCorrectData(){
@@ -21,7 +22,8 @@ public class PossitiveTest {
         BasketPage.sendName(Const.Account.NAME);
         BasketPage.sendAddress();
         BasketPage.sendStreet(Const.Account.STREET);
-        BasketPage.sendAppartment(Const.Account.APPARTAMENT);
+        BasketPage.sendHouse(Const.Account.HOUSE);
+        BasketPage.buyOrder();
 
         Assert.assertTrue(BasketPage.buttonBuyOrderIsActive());
     }

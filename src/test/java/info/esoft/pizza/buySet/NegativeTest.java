@@ -1,6 +1,5 @@
-package info.esoft.pizza.buySet;
+package info.esoft.pizza.buyset;
 
-import com.sun.tools.javac.Main;
 import info.esoft.pizza.BaseTest;
 import info.esoft.pizza.pages.FiftyOnFiftyPage;
 import info.esoft.pizza.pages.MainPage;
@@ -19,8 +18,9 @@ public class NegativeTest extends BaseTest {
         FiftyOnFiftyPage.nextPageOnSelectPizza();
         FiftyOnFiftyPage.addPizzaOne();
         FiftyOnFiftyPage.changeOnLastPage();
+        FiftyOnFiftyPage.buySet();
 
-        Assert.assertFalse(!FiftyOnFiftyPage.buyButtonIsActive());
+        Assert.assertFalse(FiftyOnFiftyPage.buyButtonIsActive());
     }
 
     @Test
@@ -32,8 +32,9 @@ public class NegativeTest extends BaseTest {
         FiftyOnFiftyPage.addPizzaOne();
         FiftyOnFiftyPage.addPizzaTwo();
         FiftyOnFiftyPage.changeOnLastPage();
+        FiftyOnFiftyPage.buySet();
 
-        Assert.assertFalse(!FiftyOnFiftyPage.buyButtonIsActive());
+        Assert.assertFalse(FiftyOnFiftyPage.buyButtonIsActive());
     }
 
     @Test
@@ -44,7 +45,8 @@ public class NegativeTest extends BaseTest {
         FiftyOnFiftyPage.addSet();
         FiftyOnFiftyPage.nextPageOnSelectPizza();
         FiftyOnFiftyPage.changeOnLastPage();
+        FiftyOnFiftyPage.buySet();
 
-        Assert.assertFalse(!FiftyOnFiftyPage.buyButtonIsActive());
+        Assert.assertFalse(FiftyOnFiftyPage.buyButtonIsActive());
     }
 }

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class NegativeTest extends BaseTest {
 
     @Test
-    @DisplayName("Войти в аккаунт не вводя номер и подтвердив все согласшения")
+    @DisplayName("Войти в аккаунт не вводя номер и подтвердив все соглашения")
     public void noInputNumber(){
         MainPage.openMenu();
         MenuPage.enterAccount();

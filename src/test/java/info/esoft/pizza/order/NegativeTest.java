@@ -1,5 +1,6 @@
 package info.esoft.pizza.order;
 
+import info.esoft.pizza.BaseTest;
 import info.esoft.pizza.constants.Const;
 import info.esoft.pizza.helpers.Helpers;
 import info.esoft.pizza.pages.BasketPage;
@@ -8,8 +9,9 @@ import org.junit.Assert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class NegativeTest {
+public class NegativeTest extends BaseTest {
 
+    // TODO Запустить это
     @Test
     @DisplayName("Оформление заказа без введенных данных")
     public void orderWithIncorrectData(){
@@ -17,12 +19,13 @@ public class NegativeTest {
         Helpers.collectionFiftyOnFiftySet();
         MainPage.openBasket();
         BasketPage.cancelConditionAccessNumber();
+        BasketPage.buyOrder();
 
-        Assert.assertFalse(!BasketPage.buttonBuyOrderIsActive());
+        Assert.assertFalse(BasketPage.buttonBuyOrderIsActive());
     }
 
     @Test
-    @DisplayName("Введен неправильный промокод")
+    @DisplayName("Ввод неправильного промокода")
     public void orderWithIncorrectPromocode(){
         Helpers.authorization();
         Helpers.collectionFiftyOnFiftySet();
@@ -32,6 +35,6 @@ public class NegativeTest {
         BasketPage.sendPromocode(Const.Account.PROMOCODE_ERROR);
         BasketPage.agreePromocode();
 
-        Assert.assertFalse(BasketPage.getDescriptionAfterAgreePromocode().equals(Const.Message.DESCRIPTION_ERROR_PROMOCODE));
+        Assert.assertTrue(BasketPage.getDescriptionAfterAgreePromocode().contains(Const.Message.DESCRIPTION_ERROR_PROMOCODE));
     }
 }
