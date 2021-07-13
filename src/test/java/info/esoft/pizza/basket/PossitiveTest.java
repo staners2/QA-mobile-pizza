@@ -30,6 +30,7 @@ public class PossitiveTest extends BaseTest {
     public void addProductInBasketAndExitBasketTest(){
         Helpers.authorization();
         Helpers.collectionFiftyOnFiftySet();
+
         MainPage.openBasket();
         BasketPage.cancelConditionAccessNumber();
         BasketPage.closeBasket();
@@ -39,7 +40,7 @@ public class PossitiveTest extends BaseTest {
         DrinkPage.upCountPepsi();
         MainPage.openBasket();
 
-        Assert.assertTrue(BasketPage.getPriceOrder() == Const.Basket.PRICE_SET_AND_TWO_PEPSI);
+        Assert.assertTrue(BasketPage.getPriceOrder().equals(Const.Basket.PRICE_SET_AND_TWO_PEPSI));
     }
 
     @Test
@@ -50,11 +51,12 @@ public class PossitiveTest extends BaseTest {
         MainPage.openDrinkPage();
         DrinkPage.buyPepsi();
         DrinkPage.upCountPepsi();
+        MainPage.clickMenuInNavigatePanel();
         MainPage.openBasket();
         BasketPage.cancelConditionAccessNumber();
         BasketPage.removePepsi();
 
-        Assert.assertTrue(BasketPage.getPriceOrder() == Const.Basket.PRICE_SET_AND_ONE_PEPSI);
+        Assert.assertTrue(BasketPage.getPriceOrder().equals(Const.Basket.PRICE_SET_AND_ONE_PEPSI));
     }
 
 }

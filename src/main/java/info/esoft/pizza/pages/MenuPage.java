@@ -1,10 +1,14 @@
 package info.esoft.pizza.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import info.esoft.pizza.constants.Const;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -61,4 +65,8 @@ public class MenuPage {
         return elementBasket.isDisplayed();
     }
 
+    @Step("Открыть корзину")
+    public static void openBasket(){
+        elementBasket.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+    }
 }

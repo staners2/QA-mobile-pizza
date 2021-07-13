@@ -2,6 +2,7 @@ package info.esoft.pizza.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import info.esoft.pizza.constants.Const;
 import io.qameta.allure.Step;
 
 import java.time.Duration;
@@ -19,22 +20,22 @@ public class AuthorizationPage {
 
     @Step("Ввод номера телефона")
     public static void sendNumber(String number){
-        inputNumber.shouldBe(Condition.visible, Duration.ofSeconds(3)).sendKeys(number);
+        inputNumber.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).sendKeys(number);
     }
 
     @Step("Подтверждение соглашения на обработку персональных данных")
     public static void agreeConditionOne(){
-        conditionOne.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        conditionOne.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Подтверждение соглашения на распространение персональных данных")
     public static void agreeConditionTwo(){
-        conditionTwo.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        conditionTwo.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Нажатие кнопки 'далее' для входа в аккаунт")
     public static void clickNextButton(){
-        buttonNext.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonNext.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Появление окна 'Личный кабинет'")

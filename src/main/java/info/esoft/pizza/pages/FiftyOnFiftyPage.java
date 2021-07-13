@@ -3,6 +3,8 @@ package info.esoft.pizza.pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.ElementNotFound;
+import info.esoft.pizza.constants.Const;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -48,9 +50,12 @@ public class FiftyOnFiftyPage {
     @Step("Пролистать до страницу 'Завершение' сборки набора")
     public static void changeOnLastPage() {
         try{
-            buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
-            buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
-            buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+            Thread.sleep(3500);
+            buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+            Thread.sleep(3500);
+            buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+            Thread.sleep(3500);
+            buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -59,22 +64,22 @@ public class FiftyOnFiftyPage {
 
     @Step("Переключить на страницу выбора 'Пиццы'")
     public static void nextPageOnSelectPizza(){
-        buttonPageOnSelectPizza.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonPageOnSelectPizza.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Нажать кнопку 'купить' набор")
     public static void buySet(){
-        buttonBuy.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonBuy.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Получить название набора 50/50")
     public static String getTitleSetFiftyOnFifty(){
-        return titleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).getText();
+        return titleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).getText();
     }
 
     @Step("Получить описание набора 50/50")
     public static String getSubtitleSetFiftyOnFifty(){
-        return subtitleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).getText().substring(0, 39);
+        return subtitleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).getText().substring(0, 39);
     }
 
     @Step("Получить стоимость набора 50/50")
@@ -95,8 +100,14 @@ public class FiftyOnFiftyPage {
 
     @Step("Закрыть окно после покупки набора")
     public static void closePageAfterBuy(){
-        buttonOkInstruction.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
-        buttonBack.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        try{
+            buttonOkInstruction.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+        }
+        catch (ElementNotFound ex){
+            System.out.println("Instruction is not found");
+        }
+
+        buttonBack.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
         MainPage.clickMenuInNavigatePanel();
     }
 }

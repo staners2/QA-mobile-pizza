@@ -39,7 +39,7 @@ public class NegativeTest extends BaseTest {
 
     @Test
     @DisplayName("Стадия выбора 'Набора', выбрав только набор")
-    public void addSetWhenPurchasedSetTest() throws InterruptedException {
+    public void addSetWhenPurchasedSetTest() {
         MainPage.openSetsPage();
         SetsPage.collectionSetFiftyOnFifty();
         FiftyOnFiftyPage.addSet();

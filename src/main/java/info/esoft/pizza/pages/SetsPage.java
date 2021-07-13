@@ -2,6 +2,7 @@ package info.esoft.pizza.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import info.esoft.pizza.constants.Const;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -14,7 +15,7 @@ import static com.codeborne.selenide.Selenide.$x;
 public class SetsPage {
 
     private static SelenideElement buttonFilter = $x("//android.view.View[@content-desc='ФИЛЬТР ТОВАРОВ']"),
-            textCountOffer = $x("//android.view.View[contains(@text, 'предложения')]"),
+            textCountOffer = $x("//android.view.View[contains(@text, 'предложени')]"),
             buttonCollectSetFiftyOnFifty = $x("(//android.view.View[@content-desc=\"СОБРАТЬ\"])[1]"),
 
             titleSetFiftyOnFifty = $x("//android.view.View[contains(@content-desc, '50/50 Не можете решить, какую пиццу выбрать?Выбирать больше не нужно: закажите 2 любимые пиццы в одной!Внимание: Акция действует только на ассортимент пицц 36см.')]/android.view.View[2]"),
@@ -23,22 +24,22 @@ public class SetsPage {
 
     @Step("Открыть фильтр товаров")
     public static void openFilter(){
-        buttonFilter.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonFilter.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Начать собирать набор 50/50")
     public static void collectionSetFiftyOnFifty(){
-        buttonCollectSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonCollectSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Получить название набора 50/50")
     public static String getTitleSetFiftyOnFifty(){
-        return titleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).text();
+        return titleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).text();
     }
 
     @Step("Получить описание набора 50/50")
     public static String getSubtitleSetFiftyOnFifty(){
-        return subtitleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(3)).text().substring(0, 38);
+        return subtitleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).text().substring(0, 38);
     }
 
     @Step("Получить кол-во товаров подходящие под выбранный фильтр")

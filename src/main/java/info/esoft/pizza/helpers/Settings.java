@@ -37,7 +37,7 @@ public class Settings {
 
     protected static AndroidDriver createAndroidDriver() throws MalformedURLException {
         AndroidDriver<AndroidElement> driver = new AndroidDriver<>(new URL(connectAppiumString), setSettingCapabilities());
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         return driver;
     }
 

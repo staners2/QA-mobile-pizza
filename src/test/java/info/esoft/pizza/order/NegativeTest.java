@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 public class NegativeTest extends BaseTest {
 
-    // TODO Запустить это
     @Test
     @DisplayName("Оформление заказа без введенных данных")
     public void orderWithIncorrectData(){

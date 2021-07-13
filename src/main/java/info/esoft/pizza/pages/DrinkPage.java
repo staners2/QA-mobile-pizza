@@ -2,6 +2,8 @@ package info.esoft.pizza.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.ElementNotFound;
+import info.esoft.pizza.constants.Const;
 import io.qameta.allure.Step;
 
 import java.time.Duration;
@@ -18,16 +20,21 @@ public class DrinkPage {
 
     @Step("Покупка Pepsi")
     public static void buyPepsi(){
-        buttonBuyPepsi.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonBuyPepsi.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Добавление еще одной Pepsi")
     public static void upCountPepsi(){
-        buttonUpCountPepsi.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonUpCountPepsi.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Закрыть окно инструкции после первой покупки товара")
     public static void closeInstruction(){
-        buttonOkInstruction.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        try{
+            buttonOkInstruction.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+        }
+        catch (ElementNotFound ex){
+            System.out.println("Instruction is not found");
+        }
     }
 }

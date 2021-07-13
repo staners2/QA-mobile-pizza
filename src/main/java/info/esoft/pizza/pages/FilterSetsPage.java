@@ -2,6 +2,7 @@ package info.esoft.pizza.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import info.esoft.pizza.constants.Const;
 import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -26,41 +27,41 @@ public class FilterSetsPage {
 
     @Step("Открыть меню для изменения диапазона цены")
     public static void openChangeMenu(){
-        buttonSelectPrice.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonSelectPrice.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Ввести цену в поле 'Минимальная цена'")
     public static void sendMinPrice(String minPrice){
-       inputMinPrice.shouldBe(Condition.visible, Duration.ofSeconds(3)).sendKeys(minPrice);
+       inputMinPrice.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).sendKeys(minPrice);
     }
 
     @Step("Ввести цену в поле 'Максимальная цена'")
     public static void sendMaxPrice(String maxPrice){
-        inputMaxPrice.shouldBe(Condition.visible, Duration.ofSeconds(3)).sendKeys(maxPrice);
+        inputMaxPrice.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).sendKeys(maxPrice);
     }
 
     @Step("Применить изменения")
     public static void agreeChange(){
-        buttonAgreeChange.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonAgreeChange.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Прменить фильтр")
     public static void agreeFilter(){
-        buttonAgreeFilter.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonAgreeFilter.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Нажать кнопку 'Очистить фильтр'")
     public static void clearFilter(){
-        buttonClearFilter.shouldBe(Condition.visible, Duration.ofSeconds(3)).click();
+        buttonClearFilter.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
     @Step("Получить установленную максимальную стоимость")
     public static Integer getMaxPrice(){
-        return Integer.parseInt(maxPrice.shouldBe(Condition.visible, Duration.ofSeconds(3)).text());
+        return Integer.parseInt(maxPrice.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).text());
     }
 
     @Step("Получить установленную минимальную стоимость")
     public static Integer getMinPrice(){
-        return Integer.parseInt(minPrice.shouldBe(Condition.visible, Duration.ofSeconds(3)).text());
+        return Integer.parseInt(minPrice.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).text());
     }
 }
