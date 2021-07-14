@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.webdriver.WebDriverFactory;
+import info.esoft.pizza.constants.Const;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
@@ -37,7 +38,7 @@ public class Settings {
 
     protected static AndroidDriver createAndroidDriver() throws MalformedURLException {
         AndroidDriver<AndroidElement> driver = new AndroidDriver<>(new URL(connectAppiumString), setSettingCapabilities());
-        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Const.Duration.SEARCH_DURATION, TimeUnit.SECONDS);
         return driver;
     }
 
