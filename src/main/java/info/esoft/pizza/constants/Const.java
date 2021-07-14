@@ -36,6 +36,6 @@ public interface Const {
     }
 
     interface Duration{
-        int SEARCH_DURATION = 9;
+        int SEARCH_DURATION = 35;
     }
 }
