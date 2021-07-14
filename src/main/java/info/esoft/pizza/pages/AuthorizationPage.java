@@ -40,6 +40,11 @@ public class AuthorizationPage {
 
     @Step("Появление окна 'Личный кабинет'")
     public static boolean isInputValidData(){
-        return titlePage.isDisplayed();
+        try{
+            Thread.sleep(5000);
+        }catch (Exception ex){
+
+        }
+        return titlePage.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).isDisplayed() && titlePage.text().contains("Личный кабинет");
     }
 }

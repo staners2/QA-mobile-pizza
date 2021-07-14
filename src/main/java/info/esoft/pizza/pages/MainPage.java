@@ -50,7 +50,9 @@ public class MainPage{
 
     @Step("Открыть боковое меню")
     public static void openMenu(){
+        System.out.println(">>>>> Before menu click");
         buttonOpenMenu.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+        System.out.println(">>>>> Menu Click");
     }
 
     @Step("Открыть меню с товаром 'Наборы'")
