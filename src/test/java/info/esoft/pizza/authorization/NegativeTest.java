@@ -21,7 +21,7 @@ public class NegativeTest extends BaseTest {
         AuthorizationPage.agreeConditionTwo();
         AuthorizationPage.clickNextButton();
 
-        Assert.assertFalse(!AuthorizationPage.isInputValidData());
+        Assert.assertFalse(AuthorizationPage.isInputValidData());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class NegativeTest extends BaseTest {
         AuthorizationPage.sendNumber(Const.Account.NUMBER);
         AuthorizationPage.clickNextButton();
 
-        Assert.assertFalse(!AuthorizationPage.isInputValidData());
+        Assert.assertFalse(AuthorizationPage.isInputValidData());
     }
 
     @Test
@@ -44,7 +44,7 @@ public class NegativeTest extends BaseTest {
         AuthorizationPage.agreeConditionTwo();
         AuthorizationPage.clickNextButton();
 
-        Assert.assertFalse(!AuthorizationPage.isInputValidData());
+        Assert.assertFalse(AuthorizationPage.isInputValidData());
     }
 
     @Test
@@ -56,6 +56,6 @@ public class NegativeTest extends BaseTest {
         AuthorizationPage.agreeConditionOne();
         AuthorizationPage.clickNextButton();
 
-        Assert.assertFalse(!AuthorizationPage.isInputValidData());
+        Assert.assertFalse(AuthorizationPage.isInputValidData());
     }
 }

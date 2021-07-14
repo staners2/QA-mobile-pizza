@@ -22,7 +22,6 @@ public class PossitiveTest extends BaseTest {
         AuthorizationPage.agreeConditionTwo();
         AuthorizationPage.clickNextButton();
 
-        // TODO Решить вопрос с методом isInput
         Assert.assertTrue(AuthorizationPage.isInputValidData());
     }
 }

@@ -21,6 +21,7 @@ public class PossitiveTest extends BaseTest{
         BasketPage.cancelConditionAccessNumber();
         BasketPage.sendName(Const.Account.NAME);
         BasketPage.sendAddress();
+        // TODO Кривой ввод в input
         BasketPage.sendStreet(Const.Account.STREET);
         BasketPage.sendHouse(Const.Account.HOUSE);
         BasketPage.buyOrder();
