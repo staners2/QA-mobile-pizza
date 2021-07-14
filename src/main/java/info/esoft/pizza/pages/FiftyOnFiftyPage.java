@@ -1,67 +1,113 @@
 package info.esoft.pizza.pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.ElementNotFound;
+import info.esoft.pizza.constants.Const;
 import io.appium.java_client.android.AndroidDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Selenide.$x;
 
 public class FiftyOnFiftyPage {
 
-    private static By buttonPageOnSelectPizza = By.xpath("");
-    private static By buttonLastPageInUpMenu = By.xpath("");
-    private static By buttonBuy = By.xpath("");
-    private static By buttonOkInstruction = By.xpath("");
-    private static By buttonBack = By.xpath("");
+    private static SelenideElement buttonPageOnSelectPizza = $x("//android.view.View[@content-desc=\"Пиццы\"]"),
+            buttonNextPage = $x("//android.view.View[@content-desc='ДАЛЕЕ']/android.widget.TextView"),
+            buttonBuy = $x("//android.view.View[@content-desc=\"КУПИТЬ\"]"),
+            buttonOkInstruction = $x("//android.view.View[@content-desc=\"ВСЕ ПОНЯТНО!\"]"),
+            buttonBack = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[1]"),
 
-    private static By titleSetFiftyOnFifty = By.xpath("");
-    private static By subtitleSetFiftyOnFifty = By.xpath("");
-    private static By priceSetFiftyOnFifty = By.xpath("");
+            titleSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[4]"),
+            subtitleSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[3]"),
+            priceSetFiftyOnFifty = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View/android.view.View[5]"),
 
-    private static By buttonAddSet = By.xpath("");
-    // Пицца с названием "Гавайка"
-    private static By buttonAddPizzaOne = By.xpath("");
-    // Пицца с названием "Четыре сыра"
-    private static By buttonAddPizzaTwo = By.xpath("");
+            buttonAddSet = $x("//android.view.View[@content-desc=\"ДОБАВИТЬ\"]"),
+            // Пицца с названием "Гавайка"
+            buttonAddPizzaOne = $x("(//android.view.View[@content-desc=\"ДОБАВИТЬ\"])[1]"),
+            // Пицца с названием "Четыре сыра"
+            buttonAddPizzaTwo = $x("(//android.view.View[@content-desc=\"ДОБАВИТЬ\"])[2]");
 
-    public static void addSet(AndroidDriver driver){
-        driver.findElement(buttonAddSet).click();
+    @Step("Добавить сет в набор")
+    public static void addSet(){
+        buttonAddSet.click();
     }
 
-    public static void addPizzaOne(AndroidDriver driver){
-        driver.findElement(buttonAddPizzaOne).click();
+    @Step("Добавить пиццу 'Гавайка'")
+    public static void addPizzaOne(){
+        buttonAddPizzaOne.click();
     }
 
-    public static void addPizzaTwo(AndroidDriver driver){
-        driver.findElement(buttonAddPizzaTwo).click();
+    @Step("Добавить пиццу 'Четыре сыра'")
+    public static void addPizzaTwo(){
+        buttonAddPizzaTwo.click();
     }
 
-    public static void changeOnLastPage(AndroidDriver driver){
-        driver.findElement(buttonLastPageInUpMenu).click();
+    @Step("Пролистать до страницу 'Завершение' сборки набора")
+    public static void changeOnLastPage() {
+        try{
+            Thread.sleep(3500);
+            buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+            Thread.sleep(3500);
+            buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+            Thread.sleep(3500);
+            buttonNextPage.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public static void nextPageOnSelectPizza(AndroidDriver driver){
-        driver.findElement(buttonPageOnSelectPizza).click();
+    @Step("Переключить на страницу выбора 'Пиццы'")
+    public static void nextPageOnSelectPizza(){
+        buttonPageOnSelectPizza.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
-    public static String getTitleSetFiftyOnFifty(AndroidDriver driver){
-        return driver.findElement(titleSetFiftyOnFifty).getText();
+    @Step("Нажать кнопку 'купить' набор")
+    public static void buySet(){
+        buttonBuy.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
-    public static String getSubtitleSetFiftyOnFifty(AndroidDriver driver){
-        return driver.findElement(subtitleSetFiftyOnFifty).getText();
+    @Step("Получить название набора 50/50")
+    public static String getTitleSetFiftyOnFifty(){
+        return titleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).getText();
     }
 
-    public static String getPriceSetFiftyOnFifty(AndroidDriver driver){
-        return driver.findElement(priceSetFiftyOnFifty).getText();
+    @Step("Получить описание набора 50/50")
+    public static String getSubtitleSetFiftyOnFifty(){
+        return subtitleSetFiftyOnFifty.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).getText().substring(0, 39);
     }
 
-    // TODO Реализовать проверку на активную/не активную кнопку
-    public static Boolean buyButtonIsActive(AndroidDriver driver){
-        driver.findElement(buttonBuy);
-        return true;
+    @Step("Получить стоимость набора 50/50")
+    public static int getPriceSet(){
+        String price = priceSetFiftyOnFifty.text().substring(0, priceSetFiftyOnFifty.text().length() - 3);
+        return Integer.parseInt(price);
     }
 
-    // Открывает страницу SetsPage
-    public static void closePageAfterBuy(AndroidDriver driver){
-        driver.findElement(buttonOkInstruction).click();
-        driver.findElement(buttonBack).click();
+    @Step("Проверить доступно ли нажатие кнопки 'Купить' набор")
+    public static Boolean buyButtonIsActive(){
+        if (buttonOkInstruction.isDisplayed()){
+            return true;
+        }
+         else {
+            return false;
+        }
+    }
+
+    @Step("Закрыть окно после покупки набора")
+    public static void closePageAfterBuy(){
+        try{
+            buttonOkInstruction.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+        }
+        catch (ElementNotFound ex){
+            System.out.println("Instruction is not found");
+        }
+
+        buttonBack.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+        MainPage.clickMenuInNavigatePanel();
     }
 }

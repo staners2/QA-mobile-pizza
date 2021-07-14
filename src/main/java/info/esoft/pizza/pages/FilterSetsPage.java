@@ -1,38 +1,67 @@
 package info.esoft.pizza.pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import info.esoft.pizza.constants.Const;
 import io.appium.java_client.android.AndroidDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Selenide.$x;
 
 public class FilterSetsPage {
-    private static By buttonSelectPrice = By.xpath("");
-    private static By buttonAgreeFilter = By.xpath("");
-    private static By buttonClearFilter = By.xpath("");
 
-    private static By inputMinPrice = By.xpath("");
-    private static By inputMaxPrice = By.xpath("");
-    private static By buttonAgreeChange = By.xpath("");
+    private static SelenideElement buttonSelectPrice = $x("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[1]/android.widget.ListView/android.view.View"),
+            buttonAgreeFilter = $x("//android.view.View[@content-desc='ПРИМЕНИТЬ ФИЛЬТР']"),
+            buttonClearFilter = $x("//android.view.View[@content-desc='ОЧИСТИТЬ ФИЛЬТР']"),
 
-    public static void openChangeMenu(AndroidDriver driver){
-        driver.findElement(buttonSelectPrice).click();
+            inputMinPrice = $x("//android.widget.EditText[1]"),
+            inputMaxPrice = $x("//android.widget.EditText[2]"),
+            buttonAgreeChange = $x("//android.view.View[@resource-id='app']/android.view.View[3]/android.view.View[2]/android.view.View[last()]"),
+
+            minPrice = $x("//android.view.View[contains(@content-desc, 'Цена, руб.')]/android.view.View/android.widget.TextView[1]"),
+            maxPrice = $x("//android.view.View[contains(@content-desc, 'Цена, руб.')]/android.view.View/android.widget.TextView[3]");
+
+    @Step("Открыть меню для изменения диапазона цены")
+    public static void openChangeMenu(){
+        buttonSelectPrice.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
-    public static void sendMinPrice(AndroidDriver driver, String minPrice){
-        driver.findElement(inputMinPrice).sendKeys(minPrice);
+    @Step("Ввести цену в поле 'Минимальная цена'")
+    public static void sendMinPrice(String minPrice){
+       inputMinPrice.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).sendKeys(minPrice);
     }
 
-    public static void sendMaxPrice(AndroidDriver driver, String maxPrice){
-        driver.findElement(inputMaxPrice).sendKeys(maxPrice);
+    @Step("Ввести цену в поле 'Максимальная цена'")
+    public static void sendMaxPrice(String maxPrice){
+        inputMaxPrice.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).sendKeys(maxPrice);
     }
 
-    public static void agreeChange(AndroidDriver driver){
-        driver.findElement(buttonAgreeChange).click();
+    @Step("Применить изменения")
+    public static void agreeChange(){
+        buttonAgreeChange.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
-    public static void agreeFilter(AndroidDriver driver){
-        driver.findElement(buttonAgreeFilter).click();
+    @Step("Прменить фильтр")
+    public static void agreeFilter(){
+        buttonAgreeFilter.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
-    public static void clearFilter(AndroidDriver driver){
-        driver.findElement(buttonClearFilter).click();
+    @Step("Нажать кнопку 'Очистить фильтр'")
+    public static void clearFilter(){
+        buttonClearFilter.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+    }
+
+    @Step("Получить установленную максимальную стоимость")
+    public static Integer getMaxPrice(){
+        return Integer.parseInt(maxPrice.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).text());
+    }
+
+    @Step("Получить установленную минимальную стоимость")
+    public static Integer getMinPrice(){
+        return Integer.parseInt(minPrice.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).text());
     }
 }

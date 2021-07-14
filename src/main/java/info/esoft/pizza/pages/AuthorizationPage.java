@@ -1,29 +1,50 @@
 package info.esoft.pizza.pages;
 
-import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.By;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import info.esoft.pizza.constants.Const;
+import io.qameta.allure.Step;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Selenide.*;
 
 public class AuthorizationPage {
-    private static By inputNumber = By.xpath("");
-    private static By conditionOne = By.xpath("");
-    private static By conditionTwo = By.xpath("");
-    private static By buttonNext = By.xpath("");
 
-    private static By titlePage = By.xpath("");
+    private static SelenideElement inputNumber = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]//android.widget.EditText"),
+            conditionOne = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View[3]//android.widget.ListView/android.view.View[2]/android.view.View[1]"),
+            conditionTwo = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[2]/android.view.View[3]//android.widget.ListView/android.view.View[3]/android.view.View[1]"),
+            buttonNext = $x("//android.view.View[@content-desc='ПРОДОЛЖИТЬ →']"),
+            // Личный кабинет
+            titlePage = $x("//android.view.View[@resource-id='app']/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[2]");
 
-    public static void sendNumber(AndroidDriver driver, String number){
-        driver.findElement(inputNumber).sendKeys(number);
+    @Step("Ввод номера телефона")
+    public static void sendNumber(String number){
+        inputNumber.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).sendKeys(number);
     }
 
-    public static void agreeConditionOne(AndroidDriver driver){
-        driver.findElement(conditionOne).click();
+    @Step("Подтверждение соглашения на обработку персональных данных")
+    public static void agreeConditionOne(){
+        conditionOne.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
-    public static void agreeConditionTwo(AndroidDriver driver){
-        driver.findElement(conditionTwo).click();
+    @Step("Подтверждение соглашения на распространение персональных данных")
+    public static void agreeConditionTwo(){
+        conditionTwo.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
     }
 
-    public static void clickNextButton(AndroidDriver driver){
-        driver.findElement(buttonNext).click();
+    @Step("Нажатие кнопки 'далее' для входа в аккаунт")
+    public static void clickNextButton(){
+        buttonNext.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+    }
+
+    @Step("Появление окна 'Личный кабинет'")
+    public static boolean isInputValidData(){
+        try{
+            Thread.sleep(5000);
+        }catch (Exception ex){
+
+        }
+        return titlePage.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).isDisplayed() && titlePage.text().contains("Личный кабинет");
     }
 }

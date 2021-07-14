@@ -1,51 +1,72 @@
 package info.esoft.pizza.pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import info.esoft.pizza.constants.Const;
 import io.appium.java_client.android.AndroidDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Selenide.$x;
 
 public class MenuPage {
-    private static By imageLogo = By.xpath("");
 
-    // Элементы меню
-    private static By elementEnterAccount = By.xpath("");
-    private static By elementMenu = By.xpath("");
-    private static By elementPromo = By.xpath("");
-    private static By elementBonusProgram = By.xpath("");
-    private static By elementConditionDelivery = By.xpath("");
-    private static By elementContact = By.xpath("");
-    private static By elementBasket = By.xpath("");
+    private static SelenideElement imageLogo = $x(""),
 
-    public void enterAccount(AndroidDriver driver){
-        driver.findElement(elementEnterAccount).click();
+            // Элементы меню
+            elementEnterAccount = $x("//android.view.View[@content-desc='Войти']"),
+            elementMenu = $x("//android.view.View[@content-desc='Меню']"),
+            elementPromo = $x("//android.view.View[@content-desc='Акции']"),
+            elementBonusProgram = $x("//android.view.View[@content-desc='Бонусная программа']"),
+            elementConditionDelivery = $x("//android.view.View[@content-desc='Условия доставки']"),
+            elementContact = $x("//android.view.View[@content-desc='Контакты']"),
+            elementBasket = $x("//android.view.View[@content-desc='Корзина']");
+
+    @Step("Нажать кнопку 'Войти в аккаунт'")
+    public static void enterAccount(){
+        elementEnterAccount.click();
     }
 
-    // TODO IsDisplayed покажет ошибку?
-    public boolean enterAccountIsHave(AndroidDriver driver){
-        return driver.findElement(elementEnterAccount).isDisplayed();
+    @Step("Есть ли в меню пункт 'Войти в аккаунт'")
+    public static boolean enterAccountIsHave(){
+        return elementEnterAccount.isDisplayed();
     }
 
-    public boolean menuIsHave(AndroidDriver driver){
-        return driver.findElement(elementMenu).isDisplayed();
+    @Step("Есть ли в меню пункт 'Меню'")
+    public static boolean menuIsHave(){
+        return elementMenu.isDisplayed();
     }
 
-    public boolean promoIsHave(AndroidDriver driver){
-        return driver.findElement(elementPromo).isDisplayed();
+    @Step("Есть ли в меню пункт 'Акции'")
+    public static boolean promoIsHave(){
+        return elementPromo.isDisplayed();
     }
 
-    public boolean bonusProgramIsHave(AndroidDriver driver){
-        return driver.findElement(elementBonusProgram).isDisplayed();
+    @Step("Есть ли в меню пункт 'Бонусная программа'")
+    public static boolean bonusProgramIsHave(){
+        return elementBonusProgram.isDisplayed();
     }
 
-    public boolean conditionDeliveryIsHave(AndroidDriver driver){
-        return driver.findElement(elementConditionDelivery).isDisplayed();
+    @Step("Есть ли в меню пункт 'Условия доставки'")
+    public static boolean conditionDeliveryIsHave(){
+        return elementConditionDelivery.isDisplayed();
     }
 
-    public boolean contactIsHave(AndroidDriver driver){
-        return driver.findElement(elementContact).isDisplayed();
+    @Step("Есть ли в меню пункт 'Контакты'")
+    public static boolean contactIsHave(){
+        return elementContact.isDisplayed();
     }
 
-    public boolean basketIsHave(AndroidDriver driver){
-        return driver.findElement(elementBasket).isDisplayed();
+    @Step("Есть ли в меню пункт 'Корзина'")
+    public static boolean basketIsHave(){
+        return elementBasket.isDisplayed();
     }
 
+    @Step("Открыть корзину")
+    public static void openBasket(){
+        elementBasket.shouldBe(Condition.visible, Duration.ofSeconds(Const.Duration.SEARCH_DURATION)).click();
+    }
 }
